@@ -1,7 +1,5 @@
 export type Account = {
-    name: string
-}
+  name: string;
+};
 
-export type Event = {
-
-}
+export type Event = {};
