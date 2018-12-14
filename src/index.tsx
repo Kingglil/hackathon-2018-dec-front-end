@@ -4,6 +4,7 @@ import CreateEventPage from "./components/CreateEventPage";
 import { Account } from "./components/types";
 
 import App from "./components/App";
+import "./index.css";
 
 ReactDOM.render(
   <CreateEventPage account={{ name: "Creator Test" }} />,
