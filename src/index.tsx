@@ -5,12 +5,15 @@ import { Account } from "./components/types";
 import Register from "./components/Register";
 import App from "./components/App";
 import "./index.css";
-import QRReaderClass from "./components/QR";
+import Navbar from "./components/Navbar";
+import DiscoverPage from "./components/DiscoverPage";
 
-/*ReactDOM.render(
-  <CreateEventPage account={{ name: "Creator Test" }} />,
+ReactDOM.render(
+  <div style={{ height: "100%" }}>
+    <Navbar account={{ name: "Creator Test" }} />
+    <DiscoverPage events={[]} account={undefined} />
+  </div>,
   document.getElementById("app")
-);*/
+);
 
 //ReactDOM.render(<Register />, document.getElementById("app"));
-ReactDOM.render(<QRReaderClass />, document.getElementById("app"));
