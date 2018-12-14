@@ -5,8 +5,13 @@ import { Account } from "./components/types";
 
 import App from "./components/App";
 import "./index.css";
+import Navbar from "./components/Navbar";
+import DiscoverPage from "./components/DiscoverPage";
 
 ReactDOM.render(
-  <CreateEventPage account={{ name: "Creator Test" }} />,
+  <div style={{height: "100%"}}>
+    <Navbar account={{ name: "Creator Test" }} />
+    <DiscoverPage events={[]} account={undefined} />
+  </div>,
   document.getElementById("app")
 );
