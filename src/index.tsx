@@ -5,10 +5,12 @@ import { Account } from "./components/types";
 import Register from "./components/Register";
 import App from "./components/App";
 import "./index.css";
+import QRReaderClass from "./components/QR";
 
 /*ReactDOM.render(
   <CreateEventPage account={{ name: "Creator Test" }} />,
   document.getElementById("app")
 );*/
 
-ReactDOM.render(<Register />, document.getElementById("app"));
+//ReactDOM.render(<Register />, document.getElementById("app"));
+ReactDOM.render(<QRReaderClass />, document.getElementById("app"));
