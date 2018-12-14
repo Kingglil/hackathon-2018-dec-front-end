@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Component } from "react";
 import { Account } from "./types";
-import Event from './Event';
+import Event from "./Event";
 
 export interface CreateEventPageProps {
   account: Account;
@@ -97,7 +97,11 @@ class CreateEventPage extends React.Component<
             </form>
           </div>
           <div id="event-preview">
-            <span>Test123</span>
+            <Event
+              title={this.state.title}
+              description={this.state.description}
+              imagesrc={this.state.imagesrc}
+            />
           </div>
         </div>
       </div>
