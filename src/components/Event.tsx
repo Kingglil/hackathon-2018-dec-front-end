@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Component } from "react";
-import {Card, CardTitle} from 'react-materialize';
+import { Card, CardTitle } from "react-materialize";
 export interface EventProps {
   title: string;
   imagesrc: string;
@@ -10,7 +10,6 @@ export interface EventProps {
 export interface EventState {}
 
 class Event extends React.Component<EventProps, EventState> {
-
   /*render() {
     return (
     <div>
@@ -20,13 +19,26 @@ class Event extends React.Component<EventProps, EventState> {
     </div>
     );
   }*/
-  render(){
+  render() {
     return (
-    <Card className='small'
-    header={<CardTitle image={this.props.imagesrc}>Card Title</CardTitle>}>
-    I am a very simple card. I am good at containing small bits of information. I am convenient because I require little markup to use effectively.
-    </Card>
-    );}
+      <div className="row" style={{ maxHeight: "352", maxWidth: "480" }}>
+        <div className="col s12 m7">
+          <div className="card">
+            <div className="card-image">
+              <img height="352" width="480" src={this.props.imagesrc} />
+              <span className="card-title" style={{ color: "blue" }}>
+                {this.props.title}
+              </span>
+            </div>
+            <div className="card-content" />
+            <div className="card-action">
+              <p>{this.props.description}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Event;
