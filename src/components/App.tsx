@@ -42,7 +42,7 @@ class App extends React.Component<{}, AppState> {
         return <LandingPage onClick={this.lpOnClick} />;
       case 1:
         return <Login onClick={this.auOnClick} />;
-      //case 2: return <Register onClick={this.auOnClick}/>
+      case 2: return <Register onClick={this.auOnClick}/>
       case 3:
         return <AppRouter account={this.state.account} />;
     }
