@@ -1,5 +1,6 @@
 export type Account = {
-  name: string;
+  username: string;
+  fullname: string;
   friendList: Account[];
 };
 

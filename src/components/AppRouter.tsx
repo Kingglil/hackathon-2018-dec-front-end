@@ -41,6 +41,134 @@ class AppRouter extends React.Component<AppRouterProps, {}> {
               </button>
             </Link>
           </div>
+          <FriendList
+            account={{
+              fullname: "stoqn kolev",
+              username: "a",
+              friendList: [
+                {
+                  fullname: "Мирослав Патрашков",
+                  username: "a",
+                  friendList: undefined
+                },
+                {
+                  fullname: "stoqn kolev2",
+                  username: "a",
+                  friendList: undefined
+                },
+                {
+                  fullname: "stoqn kolev2",
+                  username: "a",
+                  friendList: undefined
+                },
+                {
+                  fullname: "stoqn kolev2",
+                  username: "a",
+                  friendList: undefined
+                },
+                {
+                  fullname: "stoqn kolev2",
+                  username: "a",
+                  friendList: undefined
+                },
+                {
+                  fullname: "stoqn kolev2",
+                  username: "a",
+                  friendList: undefined
+                },
+                {
+                  fullname: "stoqn kolev2",
+                  username: "a",
+                  friendList: undefined
+                },
+                {
+                  fullname: "stoqn kolev2",
+                  username: "a",
+                  friendList: undefined
+                },
+                {
+                  fullname: "stoqn kolev2",
+                  username: "a",
+                  friendList: undefined
+                },
+                {
+                  fullname: "stoqn kolev2",
+                  username: "a",
+                  friendList: undefined
+                },
+                {
+                  fullname: "stoqn kolev2",
+                  username: "a",
+                  friendList: undefined
+                },
+                {
+                  fullname: "stoqn kolev2",
+                  username: "a",
+                  friendList: undefined
+                },
+                {
+                  fullname: "stoqn kolev2",
+                  username: "a",
+                  friendList: undefined
+                },
+                {
+                  fullname: "stoqn kolev2",
+                  username: "a",
+                  friendList: undefined
+                },
+                {
+                  fullname: "stoqn kolev2",
+                  username: "a",
+                  friendList: undefined
+                },
+                {
+                  fullname: "stoqn kolev2",
+                  username: "a",
+                  friendList: undefined
+                },
+                {
+                  fullname: "stoqn kolev2",
+                  username: "a",
+                  friendList: undefined
+                },
+                {
+                  fullname: "stoqn kolev2",
+                  username: "a",
+                  friendList: undefined
+                },
+                {
+                  fullname: "stoqn kolev2",
+                  username: "a",
+                  friendList: undefined
+                },
+                {
+                  fullname: "stoqn kolev2",
+                  username: "a",
+                  friendList: undefined
+                },
+                {
+                  fullname: "stoqn kolev2",
+                  username: "a",
+                  friendList: undefined
+                },
+                {
+                  fullname: "stoqn kolev2",
+                  username: "a",
+                  friendList: undefined
+                },
+                {
+                  fullname: "stoqn kolev2",
+                  username: "a",
+                  friendList: undefined
+                },
+                {
+                  fullname: "stoqn kolev2",
+                  username: "a",
+                  friendList: undefined
+                }
+              ]
+            }}
+          />
           <Switch>
             <Route
               exact
