@@ -7,13 +7,22 @@ import App from "./components/App";
 import "./index.css";
 import Navbar from "./components/Navbar";
 import DiscoverPage from "./components/DiscoverPage";
+import MyGoogleMaps from "./components/GoogleMapsTest";
 
-ReactDOM.render(
+/*ReactDOM.render(
   <div style={{ height: "100%" }}>
     <Navbar account={{ name: "Creator Test" }} />
     <DiscoverPage events={[]} account={undefined} />
   </div>,
   document.getElementById("app")
-);
+);*/
+
+//ReactDOM.render(<MyFancyComponent />, document.getElementById("ïd"));
 
 //ReactDOM.render(<Register />, document.getElementById("app"));
+ReactDOM.render(
+  <div style={{ height: "100vh" }}>
+    <MyGoogleMaps />
+  </div>,
+  document.getElementById("app")
+);
