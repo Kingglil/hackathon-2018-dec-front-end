@@ -4,6 +4,8 @@ import App from "../components/App";
 import { BrowserRouter, Link } from "react-router-dom";
 
 import { Account } from "./types";
+import Navbar from "./Navbar";
+import DiscoverPage from "./DiscoverPage";
 
 interface AppRouterProps {
     account: Account
@@ -14,8 +16,11 @@ class AppRouter extends React.Component<AppRouterProps, {}> {
         return (
             <BrowserRouter>
                 <div>
+                    <Navbar account={this.props.account}/>
                     <Switch>
-                        
+                        <Route path="/">
+                            <DiscoverPage account={this.props.account} events={[]}/>
+                        </Route>
                     </Switch>
                 </div>
             </BrowserRouter>

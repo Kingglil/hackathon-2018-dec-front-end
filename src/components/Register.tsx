@@ -1,7 +1,9 @@
 import * as React from "react";
 import { Component } from "react";
 
-export interface RegisterProps {}
+export interface RegisterProps {
+  onClick: Function;
+}
 
 export interface RegisterState {
   username: string;
@@ -41,6 +43,7 @@ class Register extends React.Component<RegisterProps, RegisterState> {
       re.test(email)
     ) {
       console.log(1);
+      this.props.onClick();
     } else console.log(0);
   };
   render() {
@@ -122,9 +125,8 @@ class Register extends React.Component<RegisterProps, RegisterState> {
                 </label>
               </div>
               <button
-                className="pure-button pure-button-primary"
+                className="pure-button pure-button-primary login-button"
                 style={{
-                  backgroundColor: "var(--color-1)",
                   textAlign: "center"
                 }}
                 onClick={this.buttonClick}

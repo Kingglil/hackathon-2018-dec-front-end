@@ -1,5 +1,6 @@
 import * as React from "react";
 import "../index.css";
+import { runInThisContext } from "vm";
 
 interface LoginProps {
   onClick: Function;
@@ -19,11 +20,13 @@ class Login extends React.Component<LoginProps, LoginState> {
   handlePassword = e => {
     this.setState({ password: e.target.value });
   };
-  loginClicked = () => {};
+  loginClicked = () => {
+    this.props.onClick();
+  };
   render() {
     return (
       <div id="login" className="col s12 m8 offset-m2 l6 offset-l3">
-        <div className="card-panel grey lighten-5 z-depth-1">
+        <div id="login-panel" className="card-panel lighten-5 z-depth-1">
           <div className="row valign-wrapper">
             <div className="col s12">
               <h4>Влез</h4>
@@ -39,9 +42,8 @@ class Login extends React.Component<LoginProps, LoginState> {
                 type="password"
               />
               <button
-                className="pure-button pure-button-primary"
+                className="pure-button pure-button-primary login-button"
                 style={{
-                  backgroundColor: "var(--color-1)",
                   textAlign: "center"
                 }}
                 onClick={this.loginClicked}
