@@ -5,6 +5,7 @@ import Login from "./Login";
 import Register from "./Register";
 
 import { Account } from "./types";
+import { fetchPost } from "./lib";
 
 interface AppState {
   page: number;
@@ -32,8 +33,31 @@ class App extends React.Component<{}, AppState> {
     this.setState({ page });
   };
 
-  auOnClick = (account: Account) => {
-    this.setState({ account: account, page: 3 });
+  auOnClick = (type: number, accountObj: object) => {
+    if(type === 0) {
+      fetchPost("login", accountObj)
+        .then(data => data.json())
+        .then(data => {
+          if(data.code !== 0) {
+            console.log("Houston, we've got a problem!!!!");
+          }
+          else {
+            this.setState({
+              account: data,
+              page: 3
+            });
+          }
+        })
+    }
+    else if(type === 1) {
+      console.log(accountObj);
+      fetchPost("registerStepOne", accountObj)
+        .then(data => data.json())
+        .then(data => this.setState({
+          account: data,
+          page: 3
+        }));
+    }
   };
 
   getPage = (index: number) => {
@@ -42,7 +66,8 @@ class App extends React.Component<{}, AppState> {
         return <LandingPage onClick={this.lpOnClick} />;
       case 1:
         return <Login onClick={this.auOnClick} />;
-      case 2: return <Register onClick={this.auOnClick}/>
+      case 2: 
+        return <Register onClick={this.auOnClick}/>
       case 3:
         return <AppRouter account={this.state.account} />;
     }
