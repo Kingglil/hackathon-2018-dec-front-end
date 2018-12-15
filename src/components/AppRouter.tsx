@@ -15,11 +15,16 @@ class AppRouter extends React.Component<AppRouterProps, {}> {
     render() {
         return (
             <BrowserRouter>
-                <div>
+                <div id="app-container">
                     <Navbar account={this.props.account}/>
                     <Switch>
                         <Route path="/">
                             <DiscoverPage account={this.props.account} events={[]}/>
+                        </Route>
+                        <Route path="/personal">
+                            
+                        </Route>
+                        <Route path="/created">
                         </Route>
                     </Switch>
                 </div>

@@ -35,6 +35,7 @@ class Register extends React.Component<RegisterProps, RegisterState> {
     this.setState({ email: e.target.value });
   };
   buttonClick = e => {
+    this.props.onClick();
     let re = /[a-z0-9!#$%&'+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'+/=?^_`{|}~-]+)@(?:[a-z0-9](?:[a-z0-9-][a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
     let { username, password, confirmPassword, email } = this.state;
     if (
@@ -43,7 +44,6 @@ class Register extends React.Component<RegisterProps, RegisterState> {
       re.test(email)
     ) {
       console.log(1);
-      this.props.onClick();
     } else console.log(0);
   };
   render() {
