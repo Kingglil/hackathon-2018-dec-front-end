@@ -4,7 +4,7 @@ import { Account } from "./types";
 import Event from "./Event";
 
 export interface CreateEventPageProps {
-  account: Account;
+  onClick: Function;
 }
 
 export interface CreateEventPageState {
@@ -57,7 +57,9 @@ class CreateEventPage extends React.Component<
     let newState = this.state;
     this.setState(newState);
   }
-  handleButtonClick = () => {};
+  handleButtonClick = () => {
+    
+  };
   inputStyle = { width: "100%" };
   render() {
     return (

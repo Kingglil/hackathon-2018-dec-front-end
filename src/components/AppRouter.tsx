@@ -7,6 +7,7 @@ import { Account } from "./types";
 import Navbar from "./Navbar";
 import DiscoverPage from "./DiscoverPage";
 import PersonalCreatedEventsPage from "./PersonalCreatedEventsPage";
+import CreateEventPage from "./CreateEventPage";
 
 interface AppRouterProps {
     account: Account
@@ -27,6 +28,9 @@ class AppRouter extends React.Component<AppRouterProps, {}> {
                         <Link to="/">
                             <button className="pure-button pure-button-primary navbar-item">Discover</button>
                         </Link>
+                        <Link to="/createEvent">
+                            <button className="pure-button pure-button-primary navbar-item">Create Event</button>
+                        </Link>
                     </div>
                     <Switch>
                         <Route exact path="/" 
@@ -37,6 +41,9 @@ class AppRouter extends React.Component<AppRouterProps, {}> {
                         </Route>
                         <Route exact path="/created"
                             render={(props) => <PersonalCreatedEventsPage {...props} type={1} account={this.props.account} events={[]}/>}>
+                        </Route>
+                        <Route exact path="/createEvent"
+                            render={(props) => <CreateEventPage {...props} onClick={() => {}} />}>
                         </Route>
                     </Switch>
                 </div>
