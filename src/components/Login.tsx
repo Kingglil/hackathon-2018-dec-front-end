@@ -26,7 +26,7 @@ class Login extends React.Component<LoginProps, LoginState> {
         <div className="card-panel grey lighten-5 z-depth-1">
           <div className="row valign-wrapper">
             <div className="col s12">
-              <h4>Влезте</h4>
+              <h4>Влез</h4>
               <input
                 value={this.state.username}
                 onChange={this.handleUsername}
@@ -36,6 +36,7 @@ class Login extends React.Component<LoginProps, LoginState> {
                 value={this.state.password}
                 onChange={this.handlePassword}
                 placeholder="Парола"
+                type="password"
               />
               <button
                 className="pure-button pure-button-primary"
