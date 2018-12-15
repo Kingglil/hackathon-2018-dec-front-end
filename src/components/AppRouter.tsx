@@ -6,6 +6,7 @@ import { BrowserRouter, Link } from "react-router-dom";
 import { Account } from "./types";
 import Navbar from "./Navbar";
 import DiscoverPage from "./DiscoverPage";
+import PersonalCreatedEventsPage from "./PersonalCreatedEventsPage";
 
 interface AppRouterProps {
     account: Account
@@ -16,15 +17,26 @@ class AppRouter extends React.Component<AppRouterProps, {}> {
         return (
             <BrowserRouter>
                 <div id="app-container">
-                    <Navbar account={this.props.account}/>
+                    <div id="navbar">
+                        <Link to="/created">
+                            <button className="pure-button pure-button-primary navbar-item">Created Events</button>
+                        </Link>
+                        <Link to="/personal">
+                            <button className="pure-button pure-button-primary navbar-item">Personal Events</button>
+                        </Link>
+                        <Link to="/">
+                            <button className="pure-button pure-button-primary navbar-item">Discover</button>
+                        </Link>
+                    </div>
                     <Switch>
-                        <Route path="/">
-                            <DiscoverPage account={this.props.account} events={[]}/>
+                        <Route exact path="/" 
+                            render={(props) => <DiscoverPage {...props} account={this.props.account} events={[]}/>}>
                         </Route>
-                        <Route path="/personal">
-                            
+                        <Route exact path="/personal"
+                            render={(props) => <PersonalCreatedEventsPage {...props} type={0} account={this.props.account} events={[]}/>}>
                         </Route>
-                        <Route path="/created">
+                        <Route exact path="/created"
+                            render={(props) => <PersonalCreatedEventsPage {...props} type={1} account={this.props.account} events={[]}/>}>
                         </Route>
                     </Switch>
                 </div>
