@@ -1,6 +1,9 @@
 :root {
-  --color-1: #ffa500;
-  --color-2: #ffb511;
+  --color-4: #ffa500;
+  --color-2: #6981a1;
+  --color-3: #fc7a00; 
+  --color-1: #82a2cc;
+  --color-5: rgb(231, 231, 231);
 }
 
 html,
@@ -9,6 +12,7 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
+  color: white;
   font-family: Rubik;
 }
 
@@ -97,6 +101,7 @@ button {
 }
 
 #discover-page {
+  background-color: var(--color-5);
   width: 100%;
   height: 100%;
   display: flex;
@@ -145,7 +150,7 @@ button {
 }
 
 .inner-item {
-  background-color: var(--color-1) !important;
+  background-color: var(--color-4) !important;
   height: 100%;
 }
 
@@ -174,6 +179,7 @@ button {
   height: 100%;
   display: flex;
   flex-direction: column;
+  background-color: var(--color-5);
 }
 
 #landing-page-content {
@@ -190,8 +196,9 @@ button {
 }
 
 #landing-page-left-content {
-  background-color: var(--color-2);
+  background-color: var(--color-4);
   height: 100%;
+  text-align: center;
 }
 
 #landing-page-right {
@@ -201,6 +208,29 @@ button {
 
 #landing-page-title {
   color: white;
+  margin-top: 0;
+  font-size: 24px;
+  padding: 10px;
+}
+
+.landing-page-button {
+  font-size: 20px;
+  background-color: var(--color-3);
+  width: 90%;
+}
+
+#landing-page-navbar {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row-reverse;
+  background-color: var(--color-1);
+  align-items: center;
+}
+
+.margin-2 {
+  margin: 5px;
+  font-size: 20px;
 }
 
 #login,

@@ -4,6 +4,7 @@
   "description": "",
   "main": "webpack.config.js",
   "dependencies": {
+    "@types/node": "^10.12.15",
     "@types/googlemaps": "^3.30.16",
     "@types/markerclustererplus": "^2.1.33",
     "@types/react": "^16.7.17",

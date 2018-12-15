@@ -7,17 +7,18 @@ import App from "./components/App";
 import "./index.css";
 import Navbar from "./components/Navbar";
 import DiscoverPage from "./components/DiscoverPage";
-import MyGoogleMaps from "./components/GoogleMapsTest";
-import EventPage from "./components/EventPage";
-import Login from "./components/Login";
-
-/*ReactDOM.render(
-  <div style={{ height: "100%" }}>
-    <Navbar account={{ name: "Creator Test" }} />
-    <DiscoverPage events={[]} account={undefined} />
-  </div>,
+import PersonalCreatedEventsPage from "./components/PersonalCreatedEventsPage";
+import LandingPage from "./components/LandingPage";
+/*
+<div id="app-container">
+      <Navbar account={undefined}/>
+      <DiscoverPage events={[]} account={undefined}/>
+    </div>,
+*/
+ReactDOM.render(
+  <App />,
   document.getElementById("app")
-);*/
+);
 
 //ReactDOM.render(<MyFancyComponent />, document.getElementById("ïd"));
 
