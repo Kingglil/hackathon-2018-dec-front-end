@@ -10,14 +10,15 @@ import DiscoverPage from "./components/DiscoverPage";
 import PersonalCreatedEventsPage from "./components/PersonalCreatedEventsPage";
 import LandingPage from "./components/LandingPage";
 import FriendList from "./components/FriendList";
+import MapContainer from "./components/GoogleMapsTest";
 /*
 <div id="app-container">
       <Navbar account={undefined}/>
       <DiscoverPage events={[]} account={undefined}/>
     </div>,
 */
-ReactDOM.render(<App />, document.getElementById("app"));
-
+//ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render(<MapContainer />, document.getElementById("app"));
 /*ReactDOM.render(
   <FriendList
     account={{

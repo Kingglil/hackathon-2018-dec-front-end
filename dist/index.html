@@ -24,8 +24,22 @@
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/js/materialize.min.js"></script>
     <script src="https://dmla.github.io/jsqrcode/src/qr_packed.js"></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCncT6GETBHhHdRZzZzk_GaZPh5FFPYs0I&callback=ready"
+      async
+      defer
+    ></script>
     <div id="app"></div>
-
+    <script>
+      let isReady = false;
+      function ready() {
+        console.log("asd");
+        isReady = true;
+      }
+      function isReadyFunc() {
+        return isReady;
+      }
+    </script>
     <script>
       function counter(id) {
         $("#" + id).characterCounter();

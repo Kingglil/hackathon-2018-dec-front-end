@@ -28,32 +28,41 @@ class Login extends React.Component<LoginProps, LoginState> {
   };
   render() {
     return (
-      <div id="login" className="col s12 m8 offset-m2 l6 offset-l3">
+      <div
+        id="login"
+        className="col s12 m8 offset-m2 l6 offset-l3"
+        style={{ width: "35%" }}
+        onKeyUp={e => {
+          if (e.keyCode === 13) {
+            this.loginClicked();
+          }
+        }}
+      >
         <div id="login-panel" className="card-panel lighten-5 z-depth-1">
           <div className="row valign-wrapper">
             <div className="col s12">
               <h4>Влез</h4>
-              <input
-                value={this.state.username}
-                onChange={this.handleUsername}
-                placeholder="Потребителско име/E-mail"
-                onKeyUp={e => {
-                  if (e.keyCode === 13) {
-                    this.loginClicked();
-                  }
-                }}
-              />
-              <input
-                value={this.state.password}
-                onChange={this.handlePassword}
-                placeholder="Парола"
-                type="password"
-                onKeyUp={e => {
-                  if (e.keyCode === 13) {
-                    this.loginClicked();
-                  }
-                }}
-              />
+              <div className="input-field">
+                <input
+                  value={this.state.username}
+                  onChange={this.handleUsername}
+                  id="usernamelog"
+                  type="text"
+                  autoFocus
+                />
+                <label className="active" htmlFor="usernamelog">
+                  Потребителско име/E-mail
+                </label>
+              </div>
+              <div className="input-field">
+                <input
+                  value={this.state.password}
+                  onChange={this.handlePassword}
+                  id="passwordlog"
+                  type="password"
+                />
+                <label htmlFor="passwordlog">Парола</label>
+              </div>
               <button
                 className="pure-button pure-button-primary login-button"
                 style={{

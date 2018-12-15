@@ -1,5 +1,4 @@
-
-import * as React from 'react';
+import * as React from "react";
 
 import { Account, Event } from "./types";
 import Navbar from "./Navbar";
@@ -8,7 +7,7 @@ import FriendList from "./FriendList";
 import PersonalCreatedEventsPage from "./PersonalCreatedEventsPage";
 import CreateEventPage from "./CreateEventPage";
 import { fetchPost } from "./lib";
-import { BrowserRouter, Link, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
 
 interface AppRouterProps {
   account: Account;
@@ -35,16 +34,15 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
   }
 
   async componentWillMount() {
-
-    if(this.props.account !== undefined) { 
+    if (this.props.account !== undefined) {
       let data = await fetchPost("getEvents", {
         id: this.props.account._id
       });
       let events = await data.json();
       this.setState({
-          otherEvents: events.otherEvents,
-          personalEvents: events.personalEvents,
-          createdEvents: events.createdEvents
+        otherEvents: events.otherEvents,
+        personalEvents: events.personalEvents,
+        createdEvents: events.createdEvents
       });
 
       data = await fetchPost("getNewEvent", {
@@ -52,7 +50,7 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
       });
       events = await data.json();
       this.setState({
-          newEvents: [events.new]
+        newEvents: [events.new]
       });
 
       data = await fetchPost("getHotEvent", {
@@ -60,9 +58,9 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
       });
       events = await data.json();
       this.setState({
-          hotEvents: [events.hot]
+        hotEvents: [events.hot]
       });
-    /*fetchPost("getEvents", {
+      /*fetchPost("getEvents", {
         id: this.props.account._id
       })
         .then(data => data.json())
@@ -104,22 +102,22 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
           <div id="navbar">
             <Link to="/created">
               <button className="pure-button pure-button-primary navbar-item">
-                Created Events
+                Събития, създадени от мен
               </button>
             </Link>
             <Link to="/personal">
               <button className="pure-button pure-button-primary navbar-item">
-                Personal Events
+                Събития, на които ще ходя
               </button>
             </Link>
             <Link to="/">
               <button className="pure-button pure-button-primary navbar-item">
-                Discover
+                Отркирий събития
               </button>
             </Link>
             <Link to="/createEvent">
               <button className="pure-button pure-button-primary navbar-item">
-                Create Event
+                Създай събитие
               </button>
             </Link>
           </div>
