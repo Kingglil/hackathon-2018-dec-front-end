@@ -23,4 +23,5 @@ export type Event = {
   image: string;
   time: string;
   phone: string;
+  tags: string[];
 };

@@ -12,6 +12,7 @@ interface EventComponentProps {
 
 interface EventComponentState {}
 
+<<<<<<< HEAD
 class EventComponent extends React.Component<EventComponentProps, EventComponentState> {
 
   static defaultProps = {
@@ -22,6 +23,12 @@ class EventComponent extends React.Component<EventComponentProps, EventComponent
     }
   }
 
+=======
+class EventComponent extends React.Component<
+  EventComponentProps,
+  EventComponentState
+> {
+>>>>>>> 2d97e0ffadbe055f7e9d80dc7e79f024852aa249
   render() {
     return (
       <div className="row" style={{ maxHeight: "400", maxWidth: "400", padding: "20px" }}>

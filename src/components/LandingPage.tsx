@@ -27,16 +27,13 @@ class LandingPage extends React.Component<LandingPageProps, LandingPageState> {
             onClick={() => this.onClick(2)}
             className="pure-button pure-button-primary navbar-item"
           >
-            Register
+            Регистрирай се
           </button>
           <button
             onClick={() => this.onClick(1)}
             className="pure-button pure-button-primary navbar-item"
           >
-            Login
-          </button>
-          <button className="pure-button pure-button-primary navbar-item">
-            Stoyan Kolev
+            Влез
           </button>
         </div>
         <div id="landing-page-content">
@@ -51,19 +48,19 @@ class LandingPage extends React.Component<LandingPageProps, LandingPageState> {
                 onClick={() => this.onClick(1)}
                 className="pure-button pure-button-primary landing-page-button"
               >
-                Login
+                Влез
               </button>
-              <p className="margin-2">or</p>
+              <p className="margin-2">или</p>
               <button
                 onClick={() => this.onClick(2)}
                 className="pure-button pure-button-primary landing-page-button"
               >
-                Register
+                Се Регистрирай
               </button>
               <img src={logo} />
             </div>
           </div>
-          <div id="landing-page-right">bfd</div>
+          <div id="landing-page-right" />
         </div>
       </div>
     );
