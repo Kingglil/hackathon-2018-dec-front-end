@@ -19,6 +19,9 @@ class Event extends React.Component<EventProps, EventState> {
     </div>
     );
   }*/
+  componentDidUpdate() {
+    console.log(this.props);
+  }
   render() {
     return (
       <div className="row" style={{ maxHeight: "352", maxWidth: "480" }}>

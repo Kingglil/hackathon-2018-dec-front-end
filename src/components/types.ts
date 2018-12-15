@@ -4,4 +4,18 @@ export type Account = {
   friendList: Account[];
 };
 
-export type Event = {};
+export type Event = {
+  name: string;
+  organizerName: string;
+  location: {
+    lat: number;
+    lon: number;
+  };
+  description: string;
+  paypal: string;
+  phone: number;
+  limitPeople: number;
+  image: string;
+  tags: string[];
+  time: string;
+};
