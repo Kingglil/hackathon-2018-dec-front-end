@@ -55,41 +55,6 @@ class CreateEventPage extends React.Component<
   render() {
     return (
       <div>
-<<<<<<< HEAD
-        <form className="pure-form pure-form-stacked">
-          <label>Event Title</label>
-          <input
-            style={this.inputStyle}
-            value={this.state.title}
-            onChange={this.handleTitleChange}
-            placeholder="Event Title"
-          />
-          <label>Event Description</label>
-          <textarea
-            style={this.inputStyle}
-            className="pure-input-1-2"
-            placeholder="Description"
-            value={this.state.description}
-            onChange={this.handleDescriptionChange}
-          />
-          <label>Event Image</label>
-          <input
-            style={this.inputStyle}
-            id="file"
-            type="file"
-            accept="image/png, image/jpeg"
-            onChange={this.handleImageChange}
-          />
-          <button
-            type="submit"
-            className="pure-button pure-button-primary"
-            onClick={this.handleButtonClick}
-          >
-            Submit
-          </button>
-        </form>
-        <Event description={this.state.description} title={this.state.title} imagesrc={this.state.imagesrc}/>
-=======
         <div id="create-event-page">
           <div id="create-event-form">
             <form className="pure-form pure-form-stacked">
@@ -129,7 +94,6 @@ class CreateEventPage extends React.Component<
             <span>Test123</span>
           </div>
         </div>
->>>>>>> 2835ae83067d36dc69c4e0bfb57d42de6ab6881d
       </div>
     );
   }
