@@ -11,6 +11,7 @@ import PersonalCreatedEventsPage from "./components/PersonalCreatedEventsPage";
 import LandingPage from "./components/LandingPage";
 import FriendList from "./components/FriendList";
 import MapContainer from "./components/GoogleMapsTest";
+import MyMap from "./components/GoogleMapsTest";
 /*
 <div id="app-container">
       <Navbar account={undefined}/>
@@ -18,7 +19,15 @@ import MapContainer from "./components/GoogleMapsTest";
     </div>,
 */
 //ReactDOM.render(<App />, document.getElementById("app"));
-ReactDOM.render(<MapContainer />, document.getElementById("app"));
+ReactDOM.render(
+  <MyMap
+    onMarkerPlaced={coords => {
+      console.log(coords.lat());
+      console.log(coords.lng());
+    }}
+  />,
+  document.getElementById("app")
+);
 /*ReactDOM.render(
   <FriendList
     account={{
