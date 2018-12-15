@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Router, Route, Switch } from "react-router";
-import App from "../components/App";
 import { BrowserRouter, Link } from "react-router-dom";
 
 import { Account, Event } from "./types";
@@ -35,7 +34,6 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
     };
   }
 
-<<<<<<< HEAD
   async componentWillMount() {
 
     if(this.props.account !== undefined) { 
@@ -65,11 +63,6 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
           hotEvents: [events.hot]
       });
     /*fetchPost("getEvents", {
-=======
-  componentDidMount() {
-    if (this.props.account !== undefined) {
-      fetchPost("getEvents", {
->>>>>>> 2d97e0ffadbe055f7e9d80dc7e79f024852aa249
         id: this.props.account._id
       })
         .then(data => data.json())
@@ -96,19 +89,11 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
         id: this.props.account._id
       })
         .then(data => data.json())
-<<<<<<< HEAD
         .then((data) => {
             this.setState({
                 hotEvents: [data]
             })
         });*/
-=======
-        .then(data => {
-          this.setState({
-            hotEvents: [data]
-          });
-        });
->>>>>>> 2d97e0ffadbe055f7e9d80dc7e79f024852aa249
     }
   }
 
@@ -116,7 +101,6 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
     return (
       <BrowserRouter>
         <div id="app-container">
-          <FriendList friendList={this.props.account.friendList} />
           <div id="navbar">
             <Link to="/created">
               <button className="pure-button pure-button-primary navbar-item">
