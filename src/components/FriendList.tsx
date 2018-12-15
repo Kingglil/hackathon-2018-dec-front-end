@@ -4,7 +4,7 @@ import { Account } from "./types";
 const friendsImage = require("./friendsicon-01.png");
 
 interface FriendListProps {
-  friendList: string[];
+  friendList: Account[];
 }
 
 interface FriendListState {
@@ -20,17 +20,20 @@ class FriendList extends React.Component<FriendListProps, FriendListState> {
     this.setState({ shown: !this.state.shown });
   };
   render() {
-    const items = this.props.friendList.map(friend => (
-      <li
-        className="collection-item avatar"
-        style={{
-          backgroundColor: "skyblue",
-          paddingLeft: "0px"
-        }}
-      >
-        <span>{friend}</span>
-      </li>
-    ));
+    const items =
+      this.props.friendList !== undefined
+        ? this.props.friendList.map(friend => (
+            <li
+              className="collection-item avatar"
+              style={{
+                backgroundColor: "skyblue",
+                paddingLeft: "0px"
+              }}
+            >
+              <span>{friend.fullName}</span>
+            </li>
+          ))
+        : undefined;
     console.log(items);
     return (
       <React.Fragment>
