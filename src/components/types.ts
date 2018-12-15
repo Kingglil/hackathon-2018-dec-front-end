@@ -21,7 +21,6 @@ export type Event = {
   paypalAddress: string;
   limitPeople: number;
   image: string;
-  tags: string[];
   time: string;
   phone: string;
 };
