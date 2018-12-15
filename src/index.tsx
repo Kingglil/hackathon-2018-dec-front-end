@@ -9,9 +9,14 @@ import Navbar from "./components/Navbar";
 import DiscoverPage from "./components/DiscoverPage";
 import PersonalCreatedEventsPage from "./components/PersonalCreatedEventsPage";
 import LandingPage from "./components/LandingPage";
-
+/*
+<div id="app-container">
+      <Navbar account={undefined}/>
+      <DiscoverPage events={[]} account={undefined}/>
+    </div>,
+*/
 ReactDOM.render(
-    <App />,
+  <App />,
   document.getElementById("app")
 );
 
