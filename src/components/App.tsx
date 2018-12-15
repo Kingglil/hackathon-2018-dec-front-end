@@ -34,17 +34,19 @@ class App extends React.Component<{}, AppState> {
     this.setState({ page });
   };
 
-  auOnClick = (type: number, accountObj: object) => {
+  auOnClick = (type: number, accountObj: object) =>{
     if (type === 0) {
       fetchPost("login", accountObj)
         .then(data => data.json())
-        .then(data => {
+        .then(async data => {
           if (data.code !== 0) {
             console.log("Houston, we've got a problem!!!!");
           } else {
+            let res = await fetchPost("getAccountDetailsById", { id: data.id });
+            let account = await res.json();
             this.setState({
-              account: data,
-              page: 3
+              account: account.account,
+              page: 3     
             });
           }
         });

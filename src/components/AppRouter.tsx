@@ -36,10 +36,35 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
       }
   }
 
-  componentDidMount() {
+  async componentWillMount() {
 
     if(this.props.account !== undefined) { 
-    fetchPost("getEvents", {
+      let data = await fetchPost("getEvents", {
+        id: this.props.account._id
+      });
+      let events = await data.json();
+      this.setState({
+          otherEvents: events.otherEvents,
+          personalEvents: events.personalEvents,
+          createdEvents: events.createdEvents
+      });
+
+      data = await fetchPost("getNewEvent", {
+        id: this.props.account._id
+      });
+      events = await data.json();
+      this.setState({
+          newEvents: [events.new]
+      });
+
+      data = await fetchPost("getHotEvent", {
+        id: this.props.account._id
+      });
+      events = await data.json();
+      this.setState({
+          hotEvents: [events.hot]
+      });
+    /*fetchPost("getEvents", {
         id: this.props.account._id
       })
         .then(data => data.json())
@@ -70,7 +95,7 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
             this.setState({
                 hotEvents: [data]
             })
-        });
+        });*/
     }
   }
 
