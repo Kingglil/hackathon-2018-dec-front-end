@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Event from './Event';
+import { Account } from './types';
 
 interface DiscoverPageProps {
     account: Account,

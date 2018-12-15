@@ -239,4 +239,9 @@ button {
   transform: translate(-50%, -50%);
   top: 50%;
   left: 50%;
+  color: black;
+}
+
+.login-button {
+  background-color: var(--color-4);
 }
