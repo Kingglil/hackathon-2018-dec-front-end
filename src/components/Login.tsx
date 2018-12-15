@@ -37,12 +37,22 @@ class Login extends React.Component<LoginProps, LoginState> {
                 value={this.state.username}
                 onChange={this.handleUsername}
                 placeholder="Потребителско име/E-mail"
+                onKeyUp={e => {
+                  if (e.keyCode === 13) {
+                    this.loginClicked();
+                  }
+                }}
               />
               <input
                 value={this.state.password}
                 onChange={this.handlePassword}
                 placeholder="Парола"
                 type="password"
+                onKeyUp={e => {
+                  if (e.keyCode === 13) {
+                    this.loginClicked();
+                  }
+                }}
               />
               <button
                 className="pure-button pure-button-primary login-button"

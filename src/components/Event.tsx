@@ -10,7 +10,10 @@ interface EventComponentProps {
 
 interface EventComponentState {}
 
-class EventComponent extends React.Component<EventComponentProps, EventComponentState> {
+class EventComponent extends React.Component<
+  EventComponentProps,
+  EventComponentState
+> {
   render() {
     return (
       <div className="row" style={{ maxHeight: "352", maxWidth: "480" }}>

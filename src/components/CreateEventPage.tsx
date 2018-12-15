@@ -1,37 +1,22 @@
 import * as React from "react";
 import { Component } from "react";
-import { Account } from "./types";
+import { Account, Event } from "./types";
 import EventComponent from "./Event";
 
 export interface CreateEventPageProps {
   onClick: Function;
 }
 
-export interface CreateEventPageState {
-  name: string;
-  organizerName: string;
-  lat: number;
-  lon: number;
-  description: string;
-  paypal: string;
-  phone: number;
-  limitPeople: number;
-  image: string;
-  tags: string[];
-  time: string;
-}
-
-class CreateEventPage extends React.Component<
-  CreateEventPageProps,
-  CreateEventPageState
-> {
+class CreateEventPage extends React.Component<CreateEventPageProps, Event> {
   state = {
     name: undefined,
     organizerName: undefined,
-    lat: undefined,
-    lon: undefined,
+    location: {
+      lat: undefined,
+      lon: undefined
+    },
     description: undefined,
-    paypal: undefined,
+    paypalAddress: undefined,
     phone: undefined,
     limitPeople: undefined,
     image: undefined,
@@ -53,11 +38,6 @@ class CreateEventPage extends React.Component<
       this.setState({ image: data.toString() })
     );
   };
-  /*handleFileButtonClick = e => {
-    this.getBase64(e.target.files[0]).then(data =>
-      this.setState({ imagesrc: data.toString() })
-    );
-  };*/
   getBase64(file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -80,23 +60,135 @@ class CreateEventPage extends React.Component<
             <form className="pure-form pure-form-stacked">
               {/*Title */}
               <div>
-                <label>Event Title</label>
+                <label>Заглавие</label>
                 <input
                   style={this.inputStyle}
                   value={this.state.name}
                   onChange={this.handleTitleChange}
-                  placeholder="Event Title"
+                  placeholder="Заглавие"
                 />
               </div>
               {/*Description */}
               <div>
-                <label>Event Description</label>
+                <label>Описание</label>
                 <textarea
                   style={this.inputStyle}
                   className="pure-input-1-2"
-                  placeholder="Description"
+                  placeholder="Описание"
                   value={this.state.description}
                   onChange={this.handleDescriptionChange}
+                />
+              </div>
+              {/* Organizer*/}
+              <div>
+                <label>Организатор</label>
+                <input
+                  style={this.inputStyle}
+                  value={this.state.organizerName}
+                  onChange={e => {
+                    this.setState({ organizerName: e.target.value });
+                  }}
+                  placeholder="Организатор"
+                />
+              </div>
+              {/* lat */}
+              <div>
+                <label>Географска ширина</label>
+                <input
+                  type="number"
+                  style={this.inputStyle}
+                  value={this.state.location.lat}
+                  onChange={e => {
+                    this.setState({
+                      location: {
+                        lat: parseInt(e.target.value),
+                        lon: this.state.location.lon
+                      }
+                    });
+                  }}
+                  placeholder="Географска ширина"
+                />
+              </div>
+              {/* lon */}
+              <div>
+                <label>Географска дължина</label>
+                <input
+                  type="number"
+                  style={this.inputStyle}
+                  value={this.state.location.lon}
+                  onChange={e => {
+                    this.setState({
+                      location: {
+                        lon: parseInt(e.target.value),
+                        lat: this.state.location.lat
+                      }
+                    });
+                  }}
+                  placeholder="Географска дължина"
+                />
+              </div>
+              {/* paypal */}
+              <div>
+                <label>PayPal адрес</label>
+                <input
+                  style={this.inputStyle}
+                  value={this.state.paypalAddress}
+                  onChange={e => {
+                    this.setState({ paypalAddress: e.target.value });
+                  }}
+                  placeholder="PayPal адрес"
+                />
+              </div>
+              {/* phone */}
+              <div>
+                <label>Телефонен номер</label>
+                <input
+                  type="number"
+                  style={this.inputStyle}
+                  value={this.state.phone}
+                  onChange={e => {
+                    this.setState({ phone: e.target.value });
+                  }}
+                  placeholder="Телефонен номер"
+                />
+              </div>
+              {/* limitPeople */}
+              <div>
+                <label>Максимален брой хора</label>
+                <input
+                  type="number"
+                  style={this.inputStyle}
+                  value={this.state.limitPeople}
+                  onChange={e => {
+                    this.setState({ limitPeople: parseInt(e.target.value) });
+                  }}
+                  placeholder="Максимален брой хора"
+                />
+              </div>
+              {/* tags */}
+              <div>
+                <label>Тагове</label>
+                <input
+                  style={this.inputStyle}
+                  value={this.state.tags}
+                  onChange={e => {
+                    this.setState({
+                      tags: e.target.value.split(",")
+                    });
+                  }}
+                  placeholder="Тагове"
+                />
+              </div>
+              {/* time */}
+              <div>
+                <label>Дата</label>
+                <input
+                  style={this.inputStyle}
+                  value={this.state.time}
+                  onChange={e => {
+                    this.setState({ time: e.target.value });
+                  }}
+                  placeholder="Дата"
                 />
               </div>
               {/* Image Src*/}
@@ -128,112 +220,10 @@ class CreateEventPage extends React.Component<
                   </button>
                 </div>
               </div>
-              {/* Organizer*/}
-              <div>
-                <label>Organizer</label>
-                <input
-                  style={this.inputStyle}
-                  value={this.state.organizerName}
-                  onChange={e => {
-                    this.setState({ organizerName: e.target.value });
-                  }}
-                  placeholder="Organizer"
-                />
-              </div>
-              {/* lat */}
-              <div>
-                <label>Географска ширина</label>
-                <input
-                  type="number"
-                  style={this.inputStyle}
-                  value={this.state.lat}
-                  onChange={e => {
-                    this.setState({ lat: parseInt(e.target.value) });
-                  }}
-                  placeholder="Географска ширина"
-                />
-              </div>
-              {/* lon */}
-              <div>
-                <label>Географска дължина</label>
-                <input
-                  type="number"
-                  style={this.inputStyle}
-                  value={this.state.lon}
-                  onChange={e => {
-                    this.setState({ lon: parseInt(e.target.value) });
-                  }}
-                  placeholder="Географска дължина"
-                />
-              </div>
-              {/* paypal */}
-              <div>
-                <label>PayPal адрес</label>
-                <input
-                  style={this.inputStyle}
-                  value={this.state.paypal}
-                  onChange={e => {
-                    this.setState({ paypal: e.target.value });
-                  }}
-                  placeholder="PayPal адрес"
-                />
-              </div>
-              {/* phone */}
-              <div>
-                <label>Телефонен номер</label>
-                <input
-                  type="number"
-                  style={this.inputStyle}
-                  value={this.state.phone}
-                  onChange={e => {
-                    this.setState({ phone: parseInt(e.target.value) });
-                  }}
-                  placeholder="Телефонен номер"
-                />
-              </div>
-              {/* limitPeople */}
-              <div>
-                <label>Максимален брой хора</label>
-                <input
-                  type="number"
-                  style={this.inputStyle}
-                  value={this.state.limitPeople}
-                  onChange={e => {
-                    this.setState({ limitPeople: parseInt(e.target.value) });
-                  }}
-                  placeholder="Максимален брой хора"
-                />
-              </div>
-              {/* tags */}
-              <div>
-                <label>Тагове</label>
-                <input
-                  style={this.inputStyle}
-                  value={this.state.tags}
-                  onChange={e => {
-                    this.setState({ tags: e.target.value.split(" ") });
-                  }}
-                  placeholder="Тагове"
-                />
-              </div>
-              {/* time */}
-              <div>
-                <label>Дата</label>
-                <input
-                  style={this.inputStyle}
-                  value={this.state.time}
-                  onChange={e => {
-                    this.setState({ time: e.target.value });
-                  }}
-                  placeholder="Дата"
-                />
-              </div>
             </form>
           </div>
           <div id="event-preview">
-            <EventComponent
-              event={undefined}
-            />
+            <EventComponent event={this.state} />
           </div>
         </div>
       </div>

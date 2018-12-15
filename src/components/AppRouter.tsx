@@ -16,99 +16,102 @@ interface AppRouterProps {
 }
 
 interface AppRouterState {
-    otherEvents: Event[],
-    newEvents: Event[],
-    hotEvents: Event[],
-    personalEvents: Event[],
-    createdEvents: Event[]
+  otherEvents: Event[];
+  newEvents: Event[];
+  hotEvents: Event[];
+  personalEvents: Event[];
+  createdEvents: Event[];
 }
 
 class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
-
   constructor(props) {
-      super(props);
-      this.state = {
-          otherEvents: [],
-          newEvents: [],
-          hotEvents: [],
-          personalEvents: [],
-          createdEvents: []
-      }
+    super(props);
+    this.state = {
+      otherEvents: [],
+      newEvents: [],
+      hotEvents: [],
+      personalEvents: [],
+      createdEvents: []
+    };
   }
 
   componentDidMount() {
-
-    if(this.props.account !== undefined) { 
-    fetchPost("getEvents", {
+    if (this.props.account !== undefined) {
+      fetchPost("getEvents", {
         id: this.props.account._id
       })
         .then(data => data.json())
-        .then((data) => {
+        .then(data => {
           console.log(data);
           this.setState({
-              otherEvents: data.otherEvents,
-              personalEvents: data.personalEvents,
-              createdEvents: data.createdEvents
-          })
-        });
-    
-    fetchPost("getNewEvent", {
-        id: this.props.account._id
-    })
-        .then(data => data.json())
-        .then((data) => {
-            this.setState({
-                newEvents: [data]
-            })
+            otherEvents: data.otherEvents,
+            personalEvents: data.personalEvents,
+            createdEvents: data.createdEvents
+          });
         });
 
-    fetchPost("getHotEvent", {
+      fetchPost("getNewEvent", {
         id: this.props.account._id
-    })
+      })
         .then(data => data.json())
-        .then((data) => {
-            this.setState({
-                hotEvents: [data]
-            })
+        .then(data => {
+          this.setState({
+            newEvents: [data]
+          });
+        });
+
+      fetchPost("getHotEvent", {
+        id: this.props.account._id
+      })
+        .then(data => data.json())
+        .then(data => {
+          this.setState({
+            hotEvents: [data]
+          });
         });
     }
   }
 
-    render() {
-      return (
-        <BrowserRouter>
-          <div id="app-container">
-            <div id="navbar">
-              <Link to="/created">
-                <button className="pure-button pure-button-primary navbar-item">
-                  Created Events
-                </button>
-              </Link>
-              <Link to="/personal">
-                <button className="pure-button pure-button-primary navbar-item">
-                  Personal Events
-                </button>
-              </Link>
-              <Link to="/">
-                <button className="pure-button pure-button-primary navbar-item">
-                  Discover
-                </button>
-              </Link>
-              <Link to="/createEvent">
-                <button className="pure-button pure-button-primary navbar-item">
-                  Create Event
-                </button>
-              </Link>
-            </div>
-            <Switch>
-              <Route
-                exact
-                path="/"
-                render={props => (
+  render() {
+    return (
+      <BrowserRouter>
+        <div id="app-container">
+          <FriendList friendList={this.props.account.friendList} />
+          <div id="navbar">
+            <Link to="/created">
+              <button className="pure-button pure-button-primary navbar-item">
+                Created Events
+              </button>
+            </Link>
+            <Link to="/personal">
+              <button className="pure-button pure-button-primary navbar-item">
+                Personal Events
+              </button>
+            </Link>
+            <Link to="/">
+              <button className="pure-button pure-button-primary navbar-item">
+                Discover
+              </button>
+            </Link>
+            <Link to="/createEvent">
+              <button className="pure-button pure-button-primary navbar-item">
+                Create Event
+              </button>
+            </Link>
+          </div>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={props => (
                 <DiscoverPage
                   {...props}
                   account={this.props.account}
-                  events={{ other: this.state.otherEvents, new: this.state.newEvents, hot: this.state.hotEvents }}
+                  events={{
+                    other: this.state.otherEvents,
+                    new: this.state.newEvents,
+                    hot: this.state.hotEvents
+                  }}
                 />
               )}
             />
