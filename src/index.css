@@ -1,7 +1,7 @@
 :root {
   --color-4: #ffa500;
   --color-2: #6981a1;
-  --color-3: #fc7a00; 
+  --color-3: #fc7a00;
   --color-1: #82a2cc;
   --color-5: rgb(231, 231, 231);
 }
@@ -232,7 +232,8 @@ button {
   margin: 5px;
   font-size: 20px;
 }
-
+#register {
+}
 #login,
 #register {
   position: absolute;
@@ -248,4 +249,9 @@ label.active {
 #registertext {
   margin-bottom: 40px;
   text-align: center;
+  color: var(--color-1);
+}
+#stoqn {
+  color: var(--color-1);
+  font-size: 10px;
 }

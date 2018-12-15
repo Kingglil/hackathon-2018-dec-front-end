@@ -131,6 +131,7 @@ class Register extends React.Component<RegisterProps, RegisterState> {
               >
                 Регистрирай се
               </button>
+              <p id="stoqn">Стоян Колев няма нищо общо с този проект.</p>
             </div>
           </div>
         </div>
