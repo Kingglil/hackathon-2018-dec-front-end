@@ -16,6 +16,20 @@ export interface RegisterState {
 
 class Register extends React.Component<RegisterProps, RegisterState> {
   maxLength = 20;
+  constructor(props: RegisterProps) {
+    super(props);
+    this.state = {
+      username: undefined,
+      password: undefined,
+      confirmPassword: undefined,
+      secondName: undefined,
+      firstName: undefined,
+      email: undefined
+    };
+  }
+  componentDidMount() {
+    (window as any).counter("username");
+  }
   handleUsername = e => {
     this.setState({ username: e.target.value });
   };
@@ -62,6 +76,7 @@ class Register extends React.Component<RegisterProps, RegisterState> {
               <h4 id="registertext">Регистрирай се</h4>
               <div className="input-field">
                 <input
+                  value={this.state.firstName}
                   onChange={this.handleFirstName}
                   id="first_name"
                   type="text"
@@ -73,6 +88,7 @@ class Register extends React.Component<RegisterProps, RegisterState> {
               </div>
               <div className="input-field">
                 <input
+                  value={this.state.secondName}
                   onChange={this.handleSecondName}
                   id="second_name"
                   type="text"
@@ -84,15 +100,20 @@ class Register extends React.Component<RegisterProps, RegisterState> {
               </div>
               <div className="input-field">
                 <input
+                  value={this.state.username}
+                  onChange={this.handleUsername}
                   id="username"
                   type="text"
                   data-length={this.maxLength}
                   placeholder="tejkinokauti"
                 />
-                <label htmlFor="username">Потребителско име</label>
+                <label className="active" htmlFor="username">
+                  Потребителско име
+                </label>
               </div>
               <div className="input-field">
                 <input
+                  value={this.state.email}
                   onChange={this.handleEmail}
                   id="email"
                   type="text"
@@ -104,6 +125,7 @@ class Register extends React.Component<RegisterProps, RegisterState> {
               </div>
               <div className="input-field">
                 <input
+                  value={this.state.password}
                   onChange={this.handlePassword}
                   id="password"
                   type="password"
