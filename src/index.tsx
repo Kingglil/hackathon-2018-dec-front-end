@@ -9,13 +9,27 @@ import Navbar from "./components/Navbar";
 import DiscoverPage from "./components/DiscoverPage";
 import PersonalCreatedEventsPage from "./components/PersonalCreatedEventsPage";
 import LandingPage from "./components/LandingPage";
+import FriendList from "./components/FriendList";
 /*
 <div id="app-container">
       <Navbar account={undefined}/>
       <DiscoverPage events={[]} account={undefined}/>
     </div>,
 */
-ReactDOM.render(
-  <App />,
+ReactDOM.render(<App />, document.getElementById("app"));
+
+/*ReactDOM.render(
+  <FriendList
+    account={{
+      name: "stoqn kolev",
+      friendList: [
+        { name: "stoqn kolev1", friendList: undefined },
+        { name: "stoqn kolev2", friendList: undefined },
+        { name: "stoqn kolev3", friendList: undefined },
+        { name: "stoqn kolev4", friendList: undefined }
+      ]
+    }}
+  />,
   document.getElementById("app")
 );
+*/

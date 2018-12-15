@@ -3,6 +3,7 @@ import LandingPage from "./LandingPage";
 import AppRouter from "./AppRouter";
 import Login from "./Login";
 import Register from "./Register";
+import FriendList from "./FriendList";
 
 import { Account } from "./types";
 
@@ -21,11 +22,11 @@ class App extends React.Component<{}, AppState> {
   }
 
   componentDidMount() {
-    window.onpopstate = (event) => {
+    window.onpopstate = event => {
       console.log(event);
       this.setState({ page: event.state.page });
       event.preventDefault();
-    }
+    };
   }
 
   lpOnClick = (page: number) => {
@@ -42,7 +43,8 @@ class App extends React.Component<{}, AppState> {
         return <LandingPage onClick={this.lpOnClick} />;
       case 1:
         return <Login onClick={this.auOnClick} />;
-      case 2: return <Register onClick={this.auOnClick}/>
+      case 2:
+        return <Register onClick={this.auOnClick} />;
       case 3:
         return <AppRouter account={this.state.account} />;
     }
