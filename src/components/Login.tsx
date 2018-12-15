@@ -21,7 +21,10 @@ class Login extends React.Component<LoginProps, LoginState> {
     this.setState({ password: e.target.value });
   };
   loginClicked = () => {
-    this.props.onClick();
+    this.props.onClick(0, {
+      username: this.state.username,
+      password: this.state.password
+    });
   };
   render() {
     return (
