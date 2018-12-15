@@ -13,8 +13,7 @@ export interface RegisterState {
 }
 
 class Register extends React.Component<RegisterProps, RegisterState> {
-  firstName: string;
-  secondName: string;
+  maxLength = 20;
   handleUsername = e => {
     this.setState({ username: e.target.value });
   };
@@ -35,11 +34,10 @@ class Register extends React.Component<RegisterProps, RegisterState> {
   };
   buttonClick = e => {
     let re = /[a-z0-9!#$%&'+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'+/=?^_`{|}~-]+)@(?:[a-z0-9](?:[a-z0-9-][a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
-    let maxLength = 20;
     let { username, password, confirmPassword, email } = this.state;
     if (
       username === confirmPassword &&
-      username.length <= maxLength &&
+      username.length <= this.maxLength &&
       re.test(email)
     ) {
       console.log(1);
@@ -47,7 +45,65 @@ class Register extends React.Component<RegisterProps, RegisterState> {
   };
   render() {
     return (
-      <div>
+      <div id="login" className="col s12 m8 offset-m2 l6 offset-l3">
+        <div className="card-panel grey lighten-5 z-depth-1">
+          <div className="row valign-wrapper">
+            <div className="col s12">
+              <h4>Регистрирай се</h4>
+              <div className="input-field">
+                <input
+                  onChange={this.handleFirstName}
+                  id="first_name"
+                  type="text"
+                  placeholder="Стоян"
+                />
+                <label className="active" htmlFor="first_name">
+                  Име
+                </label>
+              </div>
+              <div className="input-field">
+                <input
+                  onChange={this.handleFirstName}
+                  id="first_name"
+                  type="text"
+                  placeholder="Колев"
+                />
+                <label className="active" htmlFor="first_name">
+                  Име
+                </label>
+              </div>
+              <input onChange={this.handleSecondName} placeholder="Фамилия" />
+              <div className="input-field">
+                <input id="username" type="text" data-length={this.maxLength} />
+                <label htmlFor="username">Потребителско име</label>
+              </div>
+              <input onChange={this.handleEmal} placeholder="E-mail" />
+              <input onChange={this.handlePassword} placeholder="Парола" />
+              <input
+                onChange={this.handleConfirmPassword}
+                placeholder="Потвърдете паролата"
+              />
+              <button
+                className="pure-button pure-button-primary"
+                style={{
+                  backgroundColor: "var(--color-1)",
+                  textAlign: "center"
+                }}
+                onClick={this.buttonClick}
+              >
+                Регистрирай се
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+export default Register;
+
+/*<div>
         <input onChange={this.handleFirstName} placeholder="First Name" />
         <input onChange={this.handleSecondName} placeholder="Second Name" />
         <input onChange={this.handleUsername} placeholder="Username" />
@@ -58,9 +114,4 @@ class Register extends React.Component<RegisterProps, RegisterState> {
           placeholder="Confirm Password"
         />
         <button onClick={this.buttonClick}>Submit</button>
-      </div>
-    );
-  }
-}
-
-export default Register;
+      </div> */

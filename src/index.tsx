@@ -8,6 +8,8 @@ import "./index.css";
 import Navbar from "./components/Navbar";
 import DiscoverPage from "./components/DiscoverPage";
 import MyGoogleMaps from "./components/GoogleMapsTest";
+import EventPage from "./components/EventPage";
+import Login from "./components/Login";
 
 /*ReactDOM.render(
   <div style={{ height: "100%" }}>
@@ -20,9 +22,5 @@ import MyGoogleMaps from "./components/GoogleMapsTest";
 //ReactDOM.render(<MyFancyComponent />, document.getElementById("ïd"));
 
 //ReactDOM.render(<Register />, document.getElementById("app"));
-ReactDOM.render(
-  <div style={{ height: "100vh" }}>
-    <MyGoogleMaps />
-  </div>,
-  document.getElementById("app")
-);
+//ReactDOM.render(<Login onClick={() => {}} />, document.getElementById("app"));
+ReactDOM.render(<Register />, document.getElementById("app"));
