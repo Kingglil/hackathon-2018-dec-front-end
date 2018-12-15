@@ -20,4 +20,8 @@ ReactDOM.render(
   document.getElementById("app")
 );
 
+//ReactDOM.render(<MyFancyComponent />, document.getElementById("ïd"));
+
 //ReactDOM.render(<Register />, document.getElementById("app"));
+//ReactDOM.render(<Login onClick={() => {}} />, document.getElementById("app"));
+ReactDOM.render(<Register />, document.getElementById("app"));

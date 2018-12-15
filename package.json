@@ -5,6 +5,8 @@
   "main": "webpack.config.js",
   "dependencies": {
     "@types/node": "^10.12.15",
+    "@types/googlemaps": "^3.30.16",
+    "@types/markerclustererplus": "^2.1.33",
     "@types/react": "^16.7.17",
     "@types/react-dom": "^16.0.11",
     "@types/react-router": "^4.4.3",
@@ -14,6 +16,7 @@
     "react": "^16.6.3",
     "react-bingmaps": "^3.6.1",
     "react-dom": "^16.6.3",
+    "react-google-maps": "^9.4.5",
     "react-materialize": "^2.6.0",
     "react-qr-reader": "^2.1.1",
     "react-qr-scanner": "0.0.8",
