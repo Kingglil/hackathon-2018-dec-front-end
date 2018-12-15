@@ -20,12 +20,20 @@ class DiscoverPage extends React.Component<DiscoverPageProps, DiscoverPageState>
             <div id="discover-page">
                 <div id="other-events" className="grid-item">
                     <div className="inner-item">
-                        Other
+                        <div className="events-titles">Discover</div>
                     </div>
                 </div>
                 <div id="common-events">
-                    <div id="hot-events" className="grid-item">Hot</div>
-                    <div id="new-events" className="grid-item">New</div>
+                    <div id="hot-events" className="grid-item-2">
+                        <div className="inner-item">
+                            <div className="events-titles">Hot</div>
+                        </div>
+                    </div>
+                    <div id="new-events" className="grid-item-3">
+                        <div className="inner-item">
+                            <div className="events-titles">New</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
