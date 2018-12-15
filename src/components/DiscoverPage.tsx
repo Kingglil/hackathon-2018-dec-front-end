@@ -1,13 +1,20 @@
 import * as React from "react";
-import Event from "./Event";
+import { Event } from "./types";
 import { Account } from "./types";
+import Event from "./Event";
 
 interface DiscoverPageProps {
   account: Account;
-  events: Event[];
+  events: {
+    other: Event[];
+    new: Event[];
+    hot: Event[];
+  }
 }
 
-interface DiscoverPageState {}
+interface DiscoverPageState {
+  
+}
 
 class DiscoverPage extends React.Component<
   DiscoverPageProps,
@@ -17,12 +24,21 @@ class DiscoverPage extends React.Component<
     super(props);
     this.state = {};
   }
+
   render() {
+
+    const items = this.props.events.other.map((value) => <Event )
+
     return (
       <div id="discover-page">
         <div id="other-events" className="grid-item">
           <div className="inner-item">
-            <div className="events-titles">Отркрий събития</div>
+            <div className="events-titles">
+              Отркрий събития
+              <div>
+
+              </div>
+            </div>
           </div>
         </div>
         <div id="common-events">

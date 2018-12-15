@@ -3,181 +3,108 @@ import { Router, Route, Switch } from "react-router";
 import App from "../components/App";
 import { BrowserRouter, Link } from "react-router-dom";
 
-import { Account } from "./types";
+import { Account, Event } from "./types";
 import Navbar from "./Navbar";
 import DiscoverPage from "./DiscoverPage";
 import FriendList from "./FriendList";
 import PersonalCreatedEventsPage from "./PersonalCreatedEventsPage";
 import CreateEventPage from "./CreateEventPage";
+import { fetchPost } from "./lib";
 
 interface AppRouterProps {
   account: Account;
 }
 
-class AppRouter extends React.Component<AppRouterProps, {}> {
-  render() {
-    return (
-      <BrowserRouter>
-        <div id="app-container">
-          <div id="navbar">
-            <Link to="/created">
-              <button className="pure-button pure-button-primary navbar-item">
-                Created Events
-              </button>
-            </Link>
-            <Link to="/personal">
-              <button className="pure-button pure-button-primary navbar-item">
-                Personal Events
-              </button>
-            </Link>
-            <Link to="/">
-              <button className="pure-button pure-button-primary navbar-item">
-                Discover
-              </button>
-            </Link>
-            <Link to="/createEvent">
-              <button className="pure-button pure-button-primary navbar-item">
-                Create Event
-              </button>
-            </Link>
-          </div>
-          <FriendList
-            account={{
-              fullname: "stoqn kolev",
-              username: "a",
-              friendList: [
-                {
-                  fullname: "Мирослав Патрашков",
-                  username: "a",
-                  friendList: undefined
-                },
-                {
-                  fullname: "stoqn kolev2",
-                  username: "a",
-                  friendList: undefined
-                },
-                {
-                  fullname: "stoqn kolev2",
-                  username: "a",
-                  friendList: undefined
-                },
-                {
-                  fullname: "stoqn kolev2",
-                  username: "a",
-                  friendList: undefined
-                },
-                {
-                  fullname: "stoqn kolev2",
-                  username: "a",
-                  friendList: undefined
-                },
-                {
-                  fullname: "stoqn kolev2",
-                  username: "a",
-                  friendList: undefined
-                },
-                {
-                  fullname: "stoqn kolev2",
-                  username: "a",
-                  friendList: undefined
-                },
-                {
-                  fullname: "stoqn kolev2",
-                  username: "a",
-                  friendList: undefined
-                },
-                {
-                  fullname: "stoqn kolev2",
-                  username: "a",
-                  friendList: undefined
-                },
-                {
-                  fullname: "stoqn kolev2",
-                  username: "a",
-                  friendList: undefined
-                },
-                {
-                  fullname: "stoqn kolev2",
-                  username: "a",
-                  friendList: undefined
-                },
-                {
-                  fullname: "stoqn kolev2",
-                  username: "a",
-                  friendList: undefined
-                },
-                {
-                  fullname: "stoqn kolev2",
-                  username: "a",
-                  friendList: undefined
-                },
-                {
-                  fullname: "stoqn kolev2",
-                  username: "a",
-                  friendList: undefined
-                },
-                {
-                  fullname: "stoqn kolev2",
-                  username: "a",
-                  friendList: undefined
-                },
-                {
-                  fullname: "stoqn kolev2",
-                  username: "a",
-                  friendList: undefined
-                },
-                {
-                  fullname: "stoqn kolev2",
-                  username: "a",
-                  friendList: undefined
-                },
-                {
-                  fullname: "stoqn kolev2",
-                  username: "a",
-                  friendList: undefined
-                },
-                {
-                  fullname: "stoqn kolev2",
-                  username: "a",
-                  friendList: undefined
-                },
-                {
-                  fullname: "stoqn kolev2",
-                  username: "a",
-                  friendList: undefined
-                },
-                {
-                  fullname: "stoqn kolev2",
-                  username: "a",
-                  friendList: undefined
-                },
-                {
-                  fullname: "stoqn kolev2",
-                  username: "a",
-                  friendList: undefined
-                },
-                {
-                  fullname: "stoqn kolev2",
-                  username: "a",
-                  friendList: undefined
-                },
-                {
-                  fullname: "stoqn kolev2",
-                  username: "a",
-                  friendList: undefined
-                }
-              ]
-            }}
-          />
-          <Switch>
-            <Route
-              exact
-              path="/"
-              render={props => (
+interface AppRouterState {
+    otherEvents: Event[],
+    newEvents: Event[],
+    hotEvents: Event[],
+    personalEvents: Event[],
+    createdEvents: Event[]
+}
+
+class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
+
+  constructor(props) {
+      super(props);
+  }
+
+  componentDidMount() {
+
+    type DataEvents = {
+        otherEvents: Event[],
+        personalEvents: Event[],
+        createdEvents: Event[]
+    };
+
+    fetchPost("getEvents", {
+        id: this.props.account._id
+      })
+        .then(data => data.json())
+        .then((data: DataEvents) => {
+          this.setState({
+              otherEvents: data.otherEvents,
+              personalEvents: data.personalEvents,
+              createdEvents: data.createdEvents
+          })
+        });
+    
+    fetchPost("getNewEvent", {
+        id: this.props.account._id
+    })
+        .then(data => data.json())
+        .then((data) => {
+            this.setState({
+                newEvents: [data]
+            })
+        });
+
+    fetchPost("getHotEvent", {
+        id: this.props.account._id
+    })
+        .then(data => data.json())
+        .then((data) => {
+            this.setState({
+                hotEvents: [data]
+            })
+        });
+  }
+
+    render() {
+      return (
+        <BrowserRouter>
+          <div id="app-container">
+            <div id="navbar">
+              <Link to="/created">
+                <button className="pure-button pure-button-primary navbar-item">
+                  Created Events
+                </button>
+              </Link>
+              <Link to="/personal">
+                <button className="pure-button pure-button-primary navbar-item">
+                  Personal Events
+                </button>
+              </Link>
+              <Link to="/">
+                <button className="pure-button pure-button-primary navbar-item">
+                  Discover
+                </button>
+              </Link>
+              <Link to="/createEvent">
+                <button className="pure-button pure-button-primary navbar-item">
+                  Create Event
+                </button>
+              </Link>
+            </div>
+            <Switch>
+              <Route
+                exact
+                path="/"
+                render={props => (
                 <DiscoverPage
                   {...props}
                   account={this.props.account}
-                  events={[]}
+                  events={{ other: this.state.otherEvents, new: this.state.newEvents, hot: this.state.hotEvents }}
                 />
               )}
             />
