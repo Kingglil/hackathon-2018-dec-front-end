@@ -245,3 +245,12 @@ button {
 .login-button {
   background-color: var(--color-4);
 }
+
+label.active {
+  font-size: 15px !important;
+}
+
+#registertext {
+  margin-bottom: 40px;
+  text-align: center;
+}
