@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Component } from "react";
 import { Account } from "./types";
-import Event from './Event';
+import Event from "./Event";
 
 export interface CreateEventPageProps {
   account: Account;
@@ -34,10 +34,17 @@ class CreateEventPage extends React.Component<
     this.setState({ description: e.target.value });
   };
   handleImageChange = e => {
+    console.log(e);
+    
     this.getBase64(e.target.files[0]).then(data =>
       this.setState({ imagesrc: data.toString() })
     );
   };
+  handleFileButtonClick = e => {
+    this.getBase64(e.target.files[0]).then(data =>
+      this.setState({ imagesrc: data.toString() })
+    );
+  }
   getBase64(file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -74,13 +81,12 @@ class CreateEventPage extends React.Component<
                 onChange={this.handleDescriptionChange}
               />
               <label>Event Image</label>
-              <input
-                style={this.inputStyle}
-                id="file"
-                type="file"
-                accept="image/png, image/jpeg"
-                onChange={this.handleImageChange}
-              />
+
+              <div className="upload-btn-wrapper">
+                <button className="pure-button pure-button-primary" onClick={this.handleImageChange}>Upload a file</button>
+                <input type="file"/>
+              </div>
+
               <button
                 type="submit"
                 className="pure-button pure-button-primary"
@@ -91,7 +97,11 @@ class CreateEventPage extends React.Component<
             </form>
           </div>
           <div id="event-preview">
-            <span>Test123</span>
+            <Event
+              title={this.state.title}
+              description={this.state.description}
+              imagesrc={this.state.imagesrc}
+            />
           </div>
         </div>
       </div>

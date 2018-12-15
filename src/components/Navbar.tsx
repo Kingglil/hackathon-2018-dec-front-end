@@ -17,7 +17,9 @@ class Navbar extends React.Component<NavbarProps, NavbarState> {
     render() { 
         return (  
             <div id="navbar">
-
+                <button className="pure-button pure-button-primary navbar-item">Created Events</button>
+                <button className="pure-button pure-button-primary navbar-item">Personal Events</button>
+                <button className="pure-button pure-button-primary navbar-item">Discover</button>
             </div>
         );
     }
