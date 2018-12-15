@@ -92,33 +92,39 @@ class MyMap extends React.Component<MyMapProps, MyMapState> {
   marker = undefined;
   counter = 0;
   initMap = () => {
-    var myLatLng = { lat: -25.363, lng: 131.044 };
+    var myLatLng = { lat: 42.510578, lng: 27.461014 };
 
     this.map = new google.maps.Map(document.getElementById("map"), {
-      zoom: 4,
+      zoom: 13.25,
       center: myLatLng
     });
     google.maps.event.addListener(this.map, "click", event => {
       if (this.counter === 0) {
         this.placeMarker(event.latLng);
+        this.marker.addListener("drag", event => {
+          this.props.onMarkerPlaced(event.latLng);
+        });
         this.counter++;
       } else {
         this.marker.setPosition(event.latLng);
       }
-      console.log(this.props);
+      console.log({ props: this.props });
       this.props.onMarkerPlaced(event.latLng);
     });
   };
   placeMarker = location => {
     this.marker = new google.maps.Marker({
       position: location,
-      map: this.map
+      map: this.map,
+      draggable: true
     });
+    console.log((google.maps as any).MarkerOptions);
   };
 
   componentDidMount() {
     console.log(this.initMap);
     if (this.initMap === undefined) {
+      console.log("didn't pass");
       this.map = undefined;
       this.marker = undefined;
       this.counter = 0;
@@ -129,10 +135,10 @@ class MyMap extends React.Component<MyMapProps, MyMapState> {
         });
       };
       this.initMap = () => {
-        var myLatLng = { lat: -25.363, lng: 131.044 };
+        var myLatLng = { lat: 42.510578, lng: 27.461014 };
 
         this.map = new google.maps.Map(document.getElementById("map"), {
-          zoom: 4,
+          zoom: 2,
           center: myLatLng
         });
         google.maps.event.addListener(this.map, "click", event => {
@@ -142,7 +148,7 @@ class MyMap extends React.Component<MyMapProps, MyMapState> {
           } else {
             this.marker.setPosition(event.latLng);
           }
-          console.log(this.props);
+          console.log({ props: this.props });
           //this.props.onMarkerPlaced(event.latLng);
         });
       };
@@ -156,7 +162,7 @@ class MyMap extends React.Component<MyMapProps, MyMapState> {
   }
 
   render() {
-    return <div id="map" style={{ height: "50%", width: "50%" }} />;
+    return <div id="map" style={{ height: "100%", width: "100%" }} />;
   }
 }
 
