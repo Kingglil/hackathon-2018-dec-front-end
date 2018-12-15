@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Component } from "react";
 import { Account } from "./types";
-import Event from "./Event";
+import EventComponent from "./Event";
 
 export interface CreateEventPageProps {
   onClick: Function;
@@ -58,7 +58,7 @@ class CreateEventPage extends React.Component<
     this.setState(newState);
   }
   handleButtonClick = () => {
-    
+
   };
   inputStyle = { width: "100%" };
   render() {
@@ -99,10 +99,8 @@ class CreateEventPage extends React.Component<
             </form>
           </div>
           <div id="event-preview">
-            <Event
-              title={this.state.title}
-              description={this.state.description}
-              imagesrc={this.state.imagesrc}
+            <EventComponent
+              event={undefined}
             />
           </div>
         </div>

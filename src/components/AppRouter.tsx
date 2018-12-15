@@ -27,21 +27,24 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
 
   constructor(props) {
       super(props);
+      this.state = {
+          otherEvents: [],
+          newEvents: [],
+          hotEvents: [],
+          personalEvents: [],
+          createdEvents: []
+      }
   }
 
   componentDidMount() {
 
-    type DataEvents = {
-        otherEvents: Event[],
-        personalEvents: Event[],
-        createdEvents: Event[]
-    };
-
+    if(this.props.account !== undefined) { 
     fetchPost("getEvents", {
         id: this.props.account._id
       })
         .then(data => data.json())
-        .then((data: DataEvents) => {
+        .then((data) => {
+          console.log(data);
           this.setState({
               otherEvents: data.otherEvents,
               personalEvents: data.personalEvents,
@@ -68,6 +71,7 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
                 hotEvents: [data]
             })
         });
+    }
   }
 
     render() {

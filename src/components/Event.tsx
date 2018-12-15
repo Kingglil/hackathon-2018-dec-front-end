@@ -11,29 +11,20 @@ interface EventComponentProps {
 interface EventComponentState {}
 
 class EventComponent extends React.Component<EventComponentProps, EventComponentState> {
-  /*render() {
-    return (
-    <div>
-      <p>{this.props.title}</p>
-      <p>{this.props.description}</p>
-      <img src={this.props.imagesrc}/>
-    </div>
-    );
-  }*/
   render() {
     return (
       <div className="row" style={{ maxHeight: "352", maxWidth: "480" }}>
         <div className="col s12 m7">
           <div className="card">
             <div className="card-image">
-              <img height="352" width="480" src={this.props.event} />
+              <img height="352" width="480" src={this.props.event.image} />
               <span className="card-title" style={{ color: "blue" }}>
                 {this.props.event.name}
               </span>
             </div>
             <div className="card-content" />
             <div className="card-action">
-              <p>{this.props.description}</p>
+              <p>{this.props.event.description}</p>
             </div>
           </div>
         </div>

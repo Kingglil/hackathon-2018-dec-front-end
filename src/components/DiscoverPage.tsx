@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Event } from "./types";
-import { Account } from "./types";
-import Event from "./Event";
+import { Account } from "./types";;
+import EventComponent from "./Event";
 
 interface DiscoverPageProps {
   account: Account;
@@ -27,7 +27,7 @@ class DiscoverPage extends React.Component<
 
   render() {
 
-    const items = this.props.events.other.map((value) => <Event )
+    const items = this.props.events.other.map((value) => <EventComponent event={value} />)
 
     return (
       <div id="discover-page">
@@ -36,7 +36,7 @@ class DiscoverPage extends React.Component<
             <div className="events-titles">
               Отркрий събития
               <div>
-
+                {items === null ? <></> : items}
               </div>
             </div>
           </div>
