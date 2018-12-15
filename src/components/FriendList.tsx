@@ -29,7 +29,7 @@ class FriendList extends React.Component<FriendListProps, FriendListState> {
           paddingLeft: "0px"
         }}
       >
-        <span>{friend.fullname}</span>
+        <span>{friend.fullName}</span>
       </li>
     ));
     console.log(items);

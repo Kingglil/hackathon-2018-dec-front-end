@@ -1,15 +1,16 @@
 import * as React from "react";
 import { Component } from "react";
 import { Card, CardTitle } from "react-materialize";
-export interface EventProps {
-  title: string;
-  imagesrc: string;
-  description: string;
+
+import { Event } from "./types";
+
+interface EventComponentProps {
+  event: Event;
 }
 
-export interface EventState {}
+interface EventComponentState {}
 
-class Event extends React.Component<EventProps, EventState> {
+class EventComponent extends React.Component<EventComponentProps, EventComponentState> {
   /*render() {
     return (
     <div>
@@ -28,9 +29,9 @@ class Event extends React.Component<EventProps, EventState> {
         <div className="col s12 m7">
           <div className="card">
             <div className="card-image">
-              <img height="352" width="480" src={this.props.imagesrc} />
+              <img height="352" width="480" src={this.props.event} />
               <span className="card-title" style={{ color: "blue" }}>
-                {this.props.title}
+                {this.props.event.name}
               </span>
             </div>
             <div className="card-content" />
@@ -44,4 +45,4 @@ class Event extends React.Component<EventProps, EventState> {
   }
 }
 
-export default Event;
+export default EventComponent;
