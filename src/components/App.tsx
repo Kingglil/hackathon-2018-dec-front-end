@@ -20,6 +20,14 @@ class App extends React.Component<{}, AppState> {
     };
   }
 
+  componentDidMount() {
+    window.onpopstate = (event) => {
+      console.log(event);
+      this.setState({ page: event.state.page });
+      event.preventDefault();
+    }
+  }
+
   lpOnClick = (page: number) => {
     this.setState({ page });
   };
@@ -42,7 +50,7 @@ class App extends React.Component<{}, AppState> {
 
   render() {
     const content = this.getPage(this.state.page);
-    return { content };
+    return content;
   }
 }
 
