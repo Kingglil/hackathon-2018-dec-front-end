@@ -12,6 +12,7 @@ import LandingPage from "./components/LandingPage";
 import FriendList from "./components/FriendList";
 import MapContainer from "./components/GoogleMapsTest";
 import MyMap from "./components/GoogleMapsTest";
+import MyMapWithMarker from "./components/GoogleMapsWithSetMarkers";
 /*
 <div id="app-container">
       <Navbar account={undefined}/>
@@ -43,7 +44,12 @@ ReactDOM.render(<App />, document.getElementById("app"));
   document.getElementById("app")
 );
 */
-/*ReactDOM.render(
-  <MyMap onMarkerPlaced={() => {}} />,
-  document.getElementById("app")
-);*/
+// ReactDOM.render(
+//   <MyMap onMarkerPlaced={() => {}} />,
+//   document.getElementById("app")
+// );
+
+// ReactDOM.render(
+//   <MyMapWithMarker lat={20} lon={20} />,
+//   document.getElementById("app")
+// );

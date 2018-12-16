@@ -195,50 +195,50 @@ class CreateEventPage extends React.Component<CreateEventPageProps, Event> {
               <div style={{ height: "500px", width: "500px" }}>
                 <MyMap
                   onMarkerPlaced={coords => {
-                    let lat = coords.lat().toFixed(5);
-                    let lng = coords.lng().toFixed(5);
+                    let lat = coords.lat();
+                    let lng = coords.lng();
                     this.setState({ location: { lat: lat, lon: lng } });
                   }}
                 />
               </div>
+
               {/* Image Src*/}
               <div>
                 <label>Event Image</label>
 
-                <div className="upload-btn-wrapper">
-                  <button
-                    className="pure-button pure-button-primary"
-                    style={{ display: "inline" }}
-                  >
-                    Upload a file
-                  </button>
-                  <input
-                    onChange={this.handleImageChange}
-                    id="filefield"
-                    type="file"
-                  />
-                </div>
-                {/* Image Src*/}
-                <div>
-                  
-
-                    <Link to="/">
-                      <button
-                        style={{ display: "inline" }}
-                        type="submit"
-                        className="pure-button pure-button-primary"
-                        onClick={this.handleButtonClick}
-                      >
-                        Submit
-                      </button>
-                    </Link>
+                <div style={{ display: "inline" }}>
+                  <div className="upload-btn-wrapper">
+                    <button
+                      className="pure-button pure-button-primary"
+                      style={{ display: "inline" }}
+                    >
+                      Upload a file
+                    </button>
+                    <input
+                      onChange={this.handleImageChange}
+                      id="filefield"
+                      type="file"
+                    />
                   </div>
+                  <div>
+                  <Link to="/">
+                    <button
+                      style={{ display: "inline" }}
+                      type="submit"
+                      className="pure-button pure-button-primary"
+                      onClick={this.handleButtonClick}
+                    >
+                      Submit
+                    </button>
+                  </Link>
                 </div>
-            </form>
           </div>
+          </div>
+          </form>
           <div id="event-preview">
             <EventComponent event={this.state} />
           </div>
+        </div>
         </div>
       </React.Fragment>
     );

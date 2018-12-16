@@ -2,25 +2,21 @@ import * as React from 'react';
 import { Event, Account } from './types';
 import { fetchPost } from './lib';
 import { Link } from 'react-router-dom';
+import MyMapWithSetMarker from "./GoogleMapsWithSetMarkers";
 
 export interface DetailedEventPageProps {
     match: any;
     account: Account;
     onClick: Function;
 }
- 
-export interface DetailedEventPageState {
-    event: Event;
-}
- 
-class DetailedEventPage extends React.Component<DetailedEventPageProps, DetailedEventPageState> {
-    constructor(props: DetailedEventPageProps) {
-        super(props);
-        this.state = { 
-            event: undefined
-        };
-    }
 
+export interface DetailedEventPageState {
+  event: Event;
+}
+class DetailedEventPage extends React.Component<DetailedEventPageProps, DetailedEventPageState> {
+    state = {
+        event: undefined
+    }
     async componentDidMount() {
         console.log("The event is");
         let res = await fetchPost("getEventDetails", { id: this.props.account._id, name: this.props.match.params.name })
@@ -33,7 +29,7 @@ class DetailedEventPage extends React.Component<DetailedEventPageProps, Detailed
     render() {         
         console.log("render");
         
-        console.log(this.state.event != undefined ? this.state.event : undefined);
+        console.log(this.state.event);
         
         if(this.state.event !== undefined) {
             return (
@@ -53,7 +49,10 @@ class DetailedEventPage extends React.Component<DetailedEventPageProps, Detailed
                     <div id="common-events">
                         <div id="hot-events" className="grid-item-2">
                             <div className="inner-item">
-
+                            <MyMapWithSetMarker
+                                lat={this.state.event.location.lat.toString()}
+                                lon={this.state.event.location.lon.toString()}
+                            />
                             </div>
                         </div>
                         <div id="new-events" className="grid-item-3">
@@ -85,5 +84,5 @@ class DetailedEventPage extends React.Component<DetailedEventPageProps, Detailed
         }
     }
 }
- 
+
 export default DetailedEventPage;

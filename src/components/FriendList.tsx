@@ -26,11 +26,11 @@ class FriendList extends React.Component<FriendListProps, FriendListState> {
             <li
               className="collection-item avatar"
               style={{
-                backgroundColor: "skyblue",
+                backgroundColor: "var(--color-1)",
                 paddingLeft: "0px"
               }}
             >
-              <span>{friend.fullName}</span>
+              <span style={{ color: "white" }}>{friend.fullName}</span>
             </li>
           ))
         : undefined;

@@ -42,8 +42,8 @@ class PersonalCreatedEventsPage extends React.Component<PersonalCreatedEventsPag
             <div id="personal-created-events-page">
                 <div id="personal-created-events-page-container">
                     <div className="events-titles">
-                        <p>{this.props.type === 0 ? "Personal events"
-                            : "Created Events"}</p>
+                        <p>{this.props.type === 0 ? "Събития, на които съм се записал"
+                            : "Събития, които съм създал"}</p>
                         <div className="pc-events">
                             {items}
                         </div>
