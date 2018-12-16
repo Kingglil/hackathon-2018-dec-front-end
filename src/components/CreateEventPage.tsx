@@ -231,11 +231,7 @@ class CreateEventPage extends React.Component<
             </form>
           </div>
           <div id="event-preview">
-            <Event
-              title={this.state.name}
-              description={this.state.description}
-              imagesrc={this.state.image}
-            />
+            <Event event={} />
           </div>
         </div>
       </div>
