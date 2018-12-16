@@ -45,14 +45,21 @@ class App extends React.Component<{}, AppState> {
         page: 3
       });
     } else if (type === 0) {
+      console.log(accountObj);
       fetchPost("login", accountObj)
         .then(data => data.json())
-        .then(data => {
+        .then(async data => {
           if (data.code !== 0) {
             console.log("Houston, we've got a problem!!!!");
           } else {
+            console.log(data);
+            
+            let res = await fetchPost("getAccountDetailsById", { id: data.id });
+            let account = await res.json();
+            console.log(account);
+            
             this.setState({
-              account: data,
+              account: account.account,
               page: 3
             });
           }

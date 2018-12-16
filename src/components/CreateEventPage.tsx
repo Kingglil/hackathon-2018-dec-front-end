@@ -2,6 +2,7 @@ import * as React from "react";
 import { Component } from "react";
 import { Account, Event } from "./types";
 import EventComponent from "./Event";
+import { fetchPost } from "./lib";
 
 export interface CreateEventPageProps {
   onClick: Function;
@@ -21,7 +22,8 @@ class CreateEventPage extends React.Component<CreateEventPageProps, Event> {
     limitPeople: undefined,
     image: undefined,
     tags: undefined,
-    time: undefined
+    time: undefined,
+    address: undefined
   };
   constructor(props: CreateEventPageProps) {
     super(props);
@@ -38,6 +40,12 @@ class CreateEventPage extends React.Component<CreateEventPageProps, Event> {
       this.setState({ image: data.toString() })
     );
   };
+  handleAddressChange = (e) => {
+      this.setState({
+        address: e.target.value
+      });
+    e.preventDefault();
+  }
   getBase64(file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -50,7 +58,17 @@ class CreateEventPage extends React.Component<CreateEventPageProps, Event> {
     let newState = this.state;
     this.setState(newState);
   }
-  handleButtonClick = () => {};
+  handleButtonClick = async (event) => {
+    let res = await fetchPost("addEvent", this.state);
+    let data = await res.json();
+    if(data.code === 0) {
+      alert("nqma6 gre6ka kolega");
+    } 
+    else {
+      alert("ima6 gre6ka kolega");
+    }
+    event.preventDefault();
+  };
   inputStyle = { width: "100%" };
   render() {
     return (
@@ -191,6 +209,18 @@ class CreateEventPage extends React.Component<CreateEventPageProps, Event> {
                   placeholder="Дата"
                 />
               </div>
+              {/* Address 6matki */}
+              <div>
+                <label>Дата</label>
+                <input
+                  style={this.inputStyle}
+                  value={this.state.address}
+                  onChange={e => {
+                    this.setState({ address: e.target.value });
+                  }}
+                  placeholder="Адрес"
+                />
+              </div>
               {/* Image Src*/}
               <div>
                 <label>Event Image</label>
@@ -212,7 +242,7 @@ class CreateEventPage extends React.Component<CreateEventPageProps, Event> {
 
                   <button
                     style={{ display: "inline" }}
-                    type="submit"
+                    type="button"
                     className="pure-button pure-button-primary"
                     onClick={this.handleButtonClick}
                   >

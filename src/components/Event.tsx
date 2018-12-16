@@ -3,11 +3,14 @@ import { Component } from "react";
 import { Card, CardTitle } from "react-materialize";
 
 import { Event } from "./types";
+import { Link } from "react-router-dom";
 
 const imagePlaceholder = require("./res/image_placeholder.png");
 
 interface EventComponentProps {
   event: Event;
+  height?: number;
+  onClick?: Function;
 }
 
 interface EventComponentState {}
@@ -19,25 +22,36 @@ class EventComponent extends React.Component<EventComponentProps, EventComponent
       name: "No name",
       image: imagePlaceholder,
       description: "No desc"
+    },
+    height: 400
+  }
+
+  onClick = () => {
+    if(this.props.onClick !== undefined) {
+      this.props.onClick(this.props.event);
     }
   }
 
   render() {
     return (
-      <div className="row" style={{ maxHeight: "400", maxWidth: "400", padding: "20px" }}>
-        <div className="card">
-          <div className="card-image">
-            <img height="400" width="400" src={this.props.event.image} />
-            <span className="card-title" style={{ color: "blue" }}>
-              {this.props.event.name}
-            </span>
-          </div>
-          <div className="card-content" />
-          <div className="card-action">
-            <p>{this.props.event.description}</p>
+      <Link to={"/detailedEvent/" + this.props.event.name}>
+        <div onClick={this.onClick} className="row" style={{ maxWidth: "400", maxHeight: this.props.height, padding: "20px" }}>
+          <div className="card">
+            <div className="card-image">
+              <img width="400" height={this.props.height} src={this.props.event.image} />
+              <span className="card-title" style={{ color: "blue" }}>
+                {this.props.event.name}
+              </span>
+            </div>
+            <div className="card-content">
+              <p className="event-card-p">{this.props.event.description}</p>
+            </div>
+            <div className="card-action">
+              <p className="event-card-p">{this.props.event.address}</p>
+            </div>
           </div>
         </div>
-      </div>
+      </Link>
     );
   }
 }
