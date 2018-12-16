@@ -19,7 +19,7 @@ import MyMapWithMarker from "./components/GoogleMapsWithSetMarkers";
       <DiscoverPage events={[]} account={undefined}/>
     </div>,
 */
-//ReactDOM.render(<App />, document.getElementById("app"));
+ReactDOM.render(<App />, document.getElementById("app"));
 /*ReactDOM.render(
   <MyMap
     onMarkerPlaced={coords => {

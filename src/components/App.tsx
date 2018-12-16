@@ -37,9 +37,54 @@ class App extends React.Component<{}, AppState> {
   auOnClick = (type: number, accountObj: object) => {
     if (
       (accountObj as Account).username === "root" &&
-      (accountObj as Account).password &&
-      "root"
+      (accountObj as Account).password === "root"
     ) {
+      (accountObj as Account).friendList = [
+        {
+          fullName: "Мирослав Патрашков",
+          _id: undefined,
+          username: undefined,
+          email: undefined,
+          password: undefined,
+          phone: undefined,
+          paypalAddress: undefined,
+          organazier: undefined,
+          friendList: undefined
+        },
+        {
+          fullName: "Георги Атанасов",
+          _id: undefined,
+          username: undefined,
+          email: undefined,
+          password: undefined,
+          phone: undefined,
+          paypalAddress: undefined,
+          organazier: undefined,
+          friendList: undefined
+        },
+        {
+          fullName: "Ниола Коларов",
+          _id: undefined,
+          username: undefined,
+          email: undefined,
+          password: undefined,
+          phone: undefined,
+          paypalAddress: undefined,
+          organazier: undefined,
+          friendList: undefined
+        },
+        {
+          fullName: "Стоян Николов",
+          _id: undefined,
+          username: undefined,
+          email: undefined,
+          password: undefined,
+          phone: undefined,
+          paypalAddress: undefined,
+          organazier: undefined,
+          friendList: undefined
+        }
+      ];
       this.setState({
         account: accountObj as Account,
         page: 3
@@ -53,11 +98,11 @@ class App extends React.Component<{}, AppState> {
             console.log("Houston, we've got a problem!!!!");
           } else {
             console.log(data);
-            
+
             let res = await fetchPost("getAccountDetailsById", { id: data.id });
             let account = await res.json();
             console.log(account);
-            
+
             this.setState({
               account: account.account,
               page: 3

@@ -104,6 +104,7 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
     return (
       <BrowserRouter>
         <div id="app-container">
+          <FriendList friendList={this.props.account.friendList} />
           <div id="navbar">
             <Link to="/created">
               <button className="pure-button pure-button-primary navbar-item">

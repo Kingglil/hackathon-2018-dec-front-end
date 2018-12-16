@@ -4,6 +4,7 @@
   --color-3: #fc7a00;
   --color-1: #82a2cc;
   --color-5: rgb(231, 231, 231);
+  --color-7: rgb(37, 211, 218);
 }
 
 html,
@@ -234,7 +235,9 @@ button {
   font-size: 20px;
 }
 #register {
-  max-height: 100%;
+  max-height: 70%;
+  position: relative;
+  top: 10px;
 }
 #login,
 #register {
@@ -263,7 +266,6 @@ label.active {
   font-size: 10px;
 }
 
-
 .event-card {
   display: inline-block;
   width: 49%;
@@ -278,7 +280,8 @@ label.active {
   height: 100px;
 }
 
-.card-content, .card-action {
+.card-content,
+.card-action {
   padding: 10px !important;
 }
 
