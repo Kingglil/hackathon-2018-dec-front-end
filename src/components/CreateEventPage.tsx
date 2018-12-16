@@ -183,55 +183,29 @@ class CreateEventPage extends React.Component<CreateEventPageProps, Event> {
                   }}
                 />
               </div>
+
               {/* Image Src*/}
               <div>
                 <label>Event Image</label>
 
-                <div className="upload-btn-wrapper">
-                  <button
-                    className="pure-button pure-button-primary"
-                    style={{ display: "inline" }}
-                  >
-                    Upload a file
-                  </button>
-                  <input
-                    onChange={this.handleImageChange}
-                    id="filefield"
-                    type="file"
-                  />
-                </div>
-                {/* Image Src*/}
-                <div>
-                  <label>Event Image</label>
-
-                  <div style={{ display: "inline" }}>
-                    <div className="upload-btn-wrapper">
-                      <button
-                        className="pure-button pure-button-primary"
-                        style={{ display: "inline" }}
-                      >
-                        Upload a file
-                      </button>
-                      <input
-                        onChange={this.handleImageChange}
-                        id="filefield"
-                        type="file"
-                      />
-                    </div>
-
+                <div style={{ display: "inline" }}>
+                  <div className="upload-btn-wrapper">
                     <button
-                      style={{ display: "inline" }}
-                      type="submit"
                       className="pure-button pure-button-primary"
-                      onClick={this.handleButtonClick}
+                      style={{ display: "inline" }}
                     >
-                      Submit
+                      Upload a file
                     </button>
+                    <input
+                      onChange={this.handleImageChange}
+                      id="filefield"
+                      type="file"
+                    />
                   </div>
 
                   <button
                     style={{ display: "inline" }}
-                    type="button"
+                    type="submit"
                     className="pure-button pure-button-primary"
                     onClick={this.handleButtonClick}
                   >
