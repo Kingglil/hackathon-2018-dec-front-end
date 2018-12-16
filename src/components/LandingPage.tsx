@@ -50,12 +50,12 @@ class LandingPage extends React.Component<LandingPageProps, LandingPageState> {
               >
                 Влез
               </button>
-              <p className="margin-2">или</p>
+              <p className="margin-2">или се</p>
               <button
                 onClick={() => this.onClick(2)}
                 className="pure-button pure-button-primary landing-page-button"
               >
-                Се Регистрирай
+                Регистрирай
               </button>
               <img src={logo} />
             </div>

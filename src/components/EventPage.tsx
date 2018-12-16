@@ -18,7 +18,7 @@ class EventPage extends React.Component<EventPageProps, EventPageState> {
         <p>{this.props.title}</p>
         <p>{this.props.description}</p>
         <img src={this.props.imagesrc} />
-        <MyGoogleMaps lat={this.props.lat} long={this.props.long} />
+        {/*<MyGoogleMaps lat={this.props.lat} long={this.props.long} />*/}
       </div>
     );
   }
