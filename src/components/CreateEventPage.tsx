@@ -41,12 +41,12 @@ class CreateEventPage extends React.Component<CreateEventPageProps, Event> {
       this.setState({ image: data.toString() })
     );
   };
-  handleAddressChange = (e) => {
-      this.setState({
-        address: e.target.value
-      });
+  handleAddressChange = e => {
+    this.setState({
+      address: e.target.value
+    });
     e.preventDefault();
-  }
+  };
   getBase64(file) {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -59,13 +59,12 @@ class CreateEventPage extends React.Component<CreateEventPageProps, Event> {
     let newState = this.state;
     this.setState(newState);
   }
-  handleButtonClick = async (event) => {
+  handleButtonClick = async event => {
     let res = await fetchPost("addEvent", this.state);
     let data = await res.json();
-    if(data.code === 0) {
+    if (data.code === 0) {
       alert("nqma6 gre6ka kolega");
-    } 
-    else {
+    } else {
       alert("ima6 gre6ka kolega");
     }
     event.preventDefault();
@@ -239,11 +238,11 @@ class CreateEventPage extends React.Component<CreateEventPageProps, Event> {
                     Submit
                   </button>
                 </div>
-              </form>
-            </div>
-            <div id="event-preview">
-              <EventComponent event={this.state} />
-            </div>
+              </div>
+            </form>
+          </div>
+          <div id="event-preview">
+            <EventComponent event={this.state} />
           </div>
         </div>
       </React.Fragment>

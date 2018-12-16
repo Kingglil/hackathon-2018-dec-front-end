@@ -43,4 +43,7 @@ ReactDOM.render(<App />, document.getElementById("app"));
   document.getElementById("app")
 );
 */
-//ReactDOM.render(<MyMapDraggable />, document.getElementById("app"));
+/*ReactDOM.render(
+  <MyMap onMarkerPlaced={() => {}} />,
+  document.getElementById("app")
+);*/
