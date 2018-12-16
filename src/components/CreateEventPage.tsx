@@ -4,9 +4,11 @@ import { Account, Event } from "./types";
 import EventComponent from "./Event";
 import { fetchPost } from "./lib";
 import MyMap from "./GoogleMapsTest";
+import { Link } from "react-router-dom";
 
 interface CreateEventPageProps {
   onClick: Function;
+  account: Account;
 }
 
 class CreateEventPage extends React.Component<CreateEventPageProps, Event> {
@@ -60,13 +62,17 @@ class CreateEventPage extends React.Component<CreateEventPageProps, Event> {
     this.setState(newState);
   }
   handleButtonClick = async event => {
-    let res = await fetchPost("addEvent", this.state);
+    let res = await fetchPost("addEvent", {
+      id: this.props.account._id,
+      ...this.state
+    });
     let data = await res.json();
     if (data.code === 0) {
       alert("nqma6 gre6ka kolega");
     } else {
       alert("ima6 gre6ka kolega");
     }
+    this.props.onClick();
     event.preventDefault();
   };
   inputStyle = { width: "100%" };
@@ -173,6 +179,18 @@ class CreateEventPage extends React.Component<CreateEventPageProps, Event> {
                   placeholder="Дата  mm/dd/hh/mm"
                 />
               </div>
+              {/* adres 6matki */}
+              <div>
+                <label>Адрес</label>
+                <input
+                  style={this.inputStyle}
+                  value={this.state.address}
+                  onChange={e => {
+                    this.setState({ address: e.target.value });
+                  }}
+                  placeholder="Меден Рудник"
+                />
+              </div>
               {/** google maps */}
               <div style={{ height: "500px", width: "500px" }}>
                 <MyMap
@@ -202,43 +220,20 @@ class CreateEventPage extends React.Component<CreateEventPageProps, Event> {
                 </div>
                 {/* Image Src*/}
                 <div>
-                  <label>Event Image</label>
+                  
 
-                  <div style={{ display: "inline" }}>
-                    <div className="upload-btn-wrapper">
+                    <Link to="/">
                       <button
-                        className="pure-button pure-button-primary"
                         style={{ display: "inline" }}
+                        type="submit"
+                        className="pure-button pure-button-primary"
+                        onClick={this.handleButtonClick}
                       >
-                        Upload a file
+                        Submit
                       </button>
-                      <input
-                        onChange={this.handleImageChange}
-                        id="filefield"
-                        type="file"
-                      />
-                    </div>
-
-                    <button
-                      style={{ display: "inline" }}
-                      type="submit"
-                      className="pure-button pure-button-primary"
-                      onClick={this.handleButtonClick}
-                    >
-                      Submit
-                    </button>
+                    </Link>
                   </div>
-
-                  <button
-                    style={{ display: "inline" }}
-                    type="button"
-                    className="pure-button pure-button-primary"
-                    onClick={this.handleButtonClick}
-                  >
-                    Submit
-                  </button>
                 </div>
-              </div>
             </form>
           </div>
           <div id="event-preview">

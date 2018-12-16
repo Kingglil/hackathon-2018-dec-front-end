@@ -36,7 +36,7 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
     };
   }
 
-  async componentWillMount() {
+  updateState = async () => {
     if (this.props.account !== undefined) {
       console.log(this.props.account._id);
 
@@ -65,42 +65,16 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
       this.setState({
         hotEvents: events
       });
-      /*fetchPost("getEvents", {
-        id: this.props.account._id
-      })
-        .then(data => data.json())
-        .then(data => {
-          console.log(data);
-          this.setState({
-            otherEvents: data.otherEvents,
-            personalEvents: data.personalEvents,
-            createdEvents: data.createdEvents
-          });
-        });
-
-      fetchPost("getNewEvent", {
-        id: this.props.account._id
-      })
-        .then(data => data.json())
-        .then(data => {
-          this.setState({
-            newEvents: [data]
-          });
-        });
-
-      fetchPost("getHotEvent", {
-        id: this.props.account._id
-      })
-        .then(data => data.json())
-        .then((data) => {
-            this.setState({
-                hotEvents: [data]
-            })
-        });*/
     }
   }
 
+  async componentWillMount() {
+    this.updateState();
+  }
+
   render() {
+    console.log(this.state);
+    
     return (
       <BrowserRouter>
         <div id="app-container">
@@ -147,6 +121,7 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
                     let data = await res.json();
                     console.log(data);
                     this.setState({ event: data });
+                    this.updateState();
                   }}
                 />
               )}
@@ -159,7 +134,8 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
                   {...props}
                   type={0}
                   account={this.props.account}
-                  events={[]}
+                  events={this.state.personalEvents}
+                  onClick={this.updateState}
                 />
               )}
             />
@@ -171,7 +147,8 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
                   {...props}
                   type={1}
                   account={this.props.account}
-                  events={[]}
+                  events={this.state.createdEvents}
+                  onClick={this.updateState}
                 />
               )}
             />
@@ -179,14 +156,16 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
               exact
               path="/createEvent"
               render={props => (
-                <CreateEventPage {...props} onClick={() => {}} />
+                <CreateEventPage {...props} account={this.props.account} onClick={() => {
+                  this.updateState();
+                }} />
               )}
             />
             <Route
               exact
               path="/detailedEvent/:name"
-              render={props => <DetailedEventPage {...props} />}
-            />
+              render={props => <DetailedEventPage {...props} account={this.props.account} onClick={this.updateState}/>}
+            />  
           </Switch>
         </div>
       </BrowserRouter>

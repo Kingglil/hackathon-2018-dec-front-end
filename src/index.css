@@ -4,6 +4,7 @@
   --color-3: #fc7a00;
   --color-1: #82a2cc;
   --color-5: rgb(231, 231, 231);
+  --color-6: #00ff00;
 }
 
 html,
@@ -303,4 +304,26 @@ label.active {
 #detailed-event-page-right {
   flex: 1;
   background-color: var(--color-4);
+}
+
+.buy-ticket-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.buy-ticket {
+  background-color: var(--color-6);
+  font-size: 30px;
+  padding: 20px;
+}
+
+.pc-events {
+  text-align: center;
+}
+
+.full-width {
+  width: 33% !important;
 }
