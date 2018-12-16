@@ -1,8 +1,8 @@
 import * as React from "react";
 
 export interface MyMapWithMarkerProps {
-  lat: number;
-  lon: number;
+  lat: string;
+  lon: string;
 }
 
 export interface MyMapWithMarkerState {}
@@ -21,7 +21,7 @@ class MyMapWithMarker extends React.Component<
       zoom: 13.25,
       center: myLatLng
     });
-    this.placeMarker({ lat: this.props.lat, lng: this.props.lon });
+    this.placeMarker({ lat: parseFloat(this.props.lat), lng: parseFloat(this.props.lon) });
   };
   placeMarker = location => {
     this.marker = new google.maps.Marker({
@@ -29,7 +29,6 @@ class MyMapWithMarker extends React.Component<
       map: this.map,
       draggable: true
     });
-    console.log((google.maps as any).MarkerOptions);
   };
 
   componentDidMount() {

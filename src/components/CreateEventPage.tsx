@@ -4,9 +4,11 @@ import { Account, Event } from "./types";
 import EventComponent from "./Event";
 import { fetchPost } from "./lib";
 import MyMap from "./GoogleMapsTest";
+import { Link } from "react-router-dom";
 
 interface CreateEventPageProps {
   onClick: Function;
+  account: Account;
 }
 
 class CreateEventPage extends React.Component<CreateEventPageProps, Event> {
@@ -60,13 +62,17 @@ class CreateEventPage extends React.Component<CreateEventPageProps, Event> {
     this.setState(newState);
   }
   handleButtonClick = async event => {
-    let res = await fetchPost("addEvent", this.state);
+    let res = await fetchPost("addEvent", {
+      id: this.props.account._id,
+      ...this.state
+    });
     let data = await res.json();
     if (data.code === 0) {
       alert("nqma6 gre6ka kolega");
     } else {
       alert("ima6 gre6ka kolega");
     }
+    this.props.onClick();
     event.preventDefault();
   };
   inputStyle = { width: "100%" };
@@ -173,12 +179,24 @@ class CreateEventPage extends React.Component<CreateEventPageProps, Event> {
                   placeholder="Дата  mm/dd/hh/mm"
                 />
               </div>
+              {/* adres 6matki */}
+              <div>
+                <label>Адрес</label>
+                <input
+                  style={this.inputStyle}
+                  value={this.state.address}
+                  onChange={e => {
+                    this.setState({ address: e.target.value });
+                  }}
+                  placeholder="Меден Рудник"
+                />
+              </div>
               {/** google maps */}
               <div style={{ height: "500px", width: "500px" }}>
                 <MyMap
                   onMarkerPlaced={coords => {
-                    let lat = coords.lat().toFixed(5);
-                    let lng = coords.lng().toFixed(5);
+                    let lat = coords.lat();
+                    let lng = coords.lng();
                     this.setState({ location: { lat: lat, lon: lng } });
                   }}
                 />
@@ -202,22 +220,25 @@ class CreateEventPage extends React.Component<CreateEventPageProps, Event> {
                       type="file"
                     />
                   </div>
-
-                  <button
-                    style={{ display: "inline" }}
-                    type="submit"
-                    className="pure-button pure-button-primary"
-                    onClick={this.handleButtonClick}
-                  >
-                    Submit
-                  </button>
+                  <div>
+                  <Link to="/">
+                    <button
+                      style={{ display: "inline" }}
+                      type="submit"
+                      className="pure-button pure-button-primary"
+                      onClick={this.handleButtonClick}
+                    >
+                      Submit
+                    </button>
+                  </Link>
                 </div>
-              </div>
-            </form>
           </div>
+          </div>
+          </form>
           <div id="event-preview">
             <EventComponent event={this.state} />
           </div>
+        </div>
         </div>
       </React.Fragment>
     );

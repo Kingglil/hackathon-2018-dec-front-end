@@ -39,10 +39,9 @@ class LandingPage extends React.Component<LandingPageProps, LandingPageState> {
         <div id="landing-page-content">
           <div id="landing-page-left">
             <div id="landing-page-left-content">
-              <img src={logo} />
+              <img className="img-logo" src={logo} />
               <p id="landing-page-title">
-                The best app the world has ever seen. INSERT_APP_NAME helps you
-                learn to type български.
+                ААБ помага на организаторите на събития като предоставя платформа за популяризация на събития и система за билети. Също така платформата помага и на потребителите като те получават отстъпки, имат приятели и лесна покупка на билети. 
               </p>
               <button
                 onClick={() => this.onClick(1)}
@@ -57,7 +56,6 @@ class LandingPage extends React.Component<LandingPageProps, LandingPageState> {
               >
                 Регистрирай
               </button>
-              <img src={logo} />
             </div>
           </div>
           <div id="landing-page-right" />
