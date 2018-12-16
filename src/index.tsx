@@ -12,7 +12,6 @@ import LandingPage from "./components/LandingPage";
 import FriendList from "./components/FriendList";
 import MapContainer from "./components/GoogleMapsTest";
 import MyMap from "./components/GoogleMapsTest";
-import MyMapDraggable from "./components/GoogleMapsDraggable";
 /*
 <div id="app-container">
       <Navbar account={undefined}/>
