@@ -8,6 +8,7 @@ import PersonalCreatedEventsPage from "./PersonalCreatedEventsPage";
 import CreateEventPage from "./CreateEventPage";
 import { fetchPost } from "./lib";
 import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
+import DetailedEventPage from "./DetailedEventPage";
 
 interface AppRouterProps {
   account: Account;
@@ -19,6 +20,7 @@ interface AppRouterState {
   hotEvents: Event[];
   personalEvents: Event[];
   createdEvents: Event[];
+  event: Event;
 }
 
 class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
@@ -29,12 +31,15 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
       newEvents: [],
       hotEvents: [],
       personalEvents: [],
-      createdEvents: []
+      createdEvents: [],
+      event: undefined
     };
   }
 
   async componentWillMount() {
     if (this.props.account !== undefined) {
+      console.log(this.props.account._id);
+
       let data = await fetchPost("getEvents", {
         id: this.props.account._id
       });
@@ -50,7 +55,7 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
       });
       events = await data.json();
       this.setState({
-        newEvents: [events.new]
+        newEvents: events
       });
 
       data = await fetchPost("getHotEvent", {
@@ -58,7 +63,7 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
       });
       events = await data.json();
       this.setState({
-        hotEvents: [events.hot]
+        hotEvents: events
       });
       /*fetchPost("getEvents", {
         id: this.props.account._id
@@ -134,6 +139,15 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
                     new: this.state.newEvents,
                     hot: this.state.hotEvents
                   }}
+                  onClick={async (event: Event) => {
+                    let res = await fetchPost("getEventDetails", {
+                      name: event.name,
+                      id: this.props.account._id
+                    });
+                    let data = await res.json();
+                    console.log(data);
+                    this.setState({ event: data });
+                  }}
                 />
               )}
             />
@@ -167,6 +181,11 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
               render={props => (
                 <CreateEventPage {...props} onClick={() => {}} />
               )}
+            />
+            <Route
+              exact
+              path="/detailedEvent/:name"
+              render={props => <DetailedEventPage {...props} />}
             />
           </Switch>
         </div>

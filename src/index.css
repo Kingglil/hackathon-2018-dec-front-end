@@ -152,6 +152,7 @@ button {
 .inner-item {
   background-color: var(--color-4) !important;
   height: 100%;
+  overflow: auto;
 }
 
 .events-titles {
@@ -260,4 +261,46 @@ label.active {
 #stoqn {
   color: var(--color-1);
   font-size: 10px;
+}
+
+
+.event-card {
+  display: inline-block;
+  width: 49%;
+  color: black;
+}
+
+.event-card-p {
+  margin: 0;
+}
+
+.event-card-image {
+  height: 100px;
+}
+
+.card-content, .card-action {
+  padding: 10px !important;
+}
+
+.tiny.row {
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+  margin-top: 0 !important;
+}
+
+#detailed-event-page {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+#detailed-event-page-left {
+  flex: 2;
+  background-color: var(--color-4);
+}
+
+#detailed-event-page-right {
+  flex: 1;
+  background-color: var(--color-4);
 }
