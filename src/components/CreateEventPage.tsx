@@ -62,6 +62,7 @@ class CreateEventPage extends React.Component<CreateEventPageProps, Event> {
     this.setState(newState);
   }
   handleButtonClick = async event => {
+    console.log(this.props.account);
     let res = await fetchPost("addEvent", {
       id: this.props.account._id,
       ...this.state
@@ -221,24 +222,24 @@ class CreateEventPage extends React.Component<CreateEventPageProps, Event> {
                     />
                   </div>
                   <div>
-                  <Link to="/">
-                    <button
-                      style={{ display: "inline" }}
-                      type="submit"
-                      className="pure-button pure-button-primary"
-                      onClick={this.handleButtonClick}
-                    >
-                      Submit
-                    </button>
-                  </Link>
+                    <Link to="/">
+                      <button
+                        style={{ display: "inline" }}
+                        type="submit"
+                        className="pure-button pure-button-primary"
+                        onClick={this.handleButtonClick}
+                      >
+                        Submit
+                      </button>
+                    </Link>
+                  </div>
                 </div>
+              </div>
+            </form>
+            <div id="event-preview">
+              <EventComponent event={this.state} />
+            </div>
           </div>
-          </div>
-          </form>
-          <div id="event-preview">
-            <EventComponent event={this.state} />
-          </div>
-        </div>
         </div>
       </React.Fragment>
     );

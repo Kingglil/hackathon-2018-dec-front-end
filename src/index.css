@@ -111,11 +111,11 @@ button {
 }
 
 #other-events {
-  flex: 3;
+  flex: 6;
 }
 
 #common-events {
-  flex: 2;
+  flex: 6;
   display: flex;
   flex-direction: column;
 }
@@ -158,7 +158,7 @@ button {
 }
 
 .events-titles {
-  font-size: 24px;
+  font-size: 16px;
   color: white;
   padding-top: 10px;
   padding-left: 10px;

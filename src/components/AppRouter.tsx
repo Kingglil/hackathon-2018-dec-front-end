@@ -66,7 +66,7 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
         hotEvents: events
       });
     }
-  }
+  };
 
   async componentWillMount() {
     this.updateState();
@@ -74,7 +74,7 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
 
   render() {
     console.log(this.state);
-    
+
     return (
       <BrowserRouter>
         <div id="app-container">
@@ -92,7 +92,7 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
             </Link>
             <Link to="/">
               <button className="pure-button pure-button-primary navbar-item">
-                Отркирий събития
+                Отркрий събития
               </button>
             </Link>
             <Link to="/createEvent">
@@ -157,16 +157,26 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
               exact
               path="/createEvent"
               render={props => (
-                <CreateEventPage {...props} account={this.props.account} onClick={() => {
-                  this.updateState();
-                }} />
+                <CreateEventPage
+                  {...props}
+                  account={this.props.account}
+                  onClick={() => {
+                    this.updateState();
+                  }}
+                />
               )}
             />
             <Route
               exact
               path="/detailedEvent/:name"
-              render={props => <DetailedEventPage {...props} account={this.props.account} onClick={this.updateState}/>}
-            />  
+              render={props => (
+                <DetailedEventPage
+                  {...props}
+                  account={this.props.account}
+                  onClick={this.updateState}
+                />
+              )}
+            />
           </Switch>
         </div>
       </BrowserRouter>

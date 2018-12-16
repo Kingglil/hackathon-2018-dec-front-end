@@ -129,7 +129,7 @@ class Register extends React.Component<RegisterProps, RegisterState> {
                   onChange={this.handleEmail}
                   id="email"
                   type="text"
-                  placeholder="slivenski@chakal.jena"
+                  placeholder="example@example.example"
                 />
                 <label className="active" htmlFor="email">
                   E-mail
