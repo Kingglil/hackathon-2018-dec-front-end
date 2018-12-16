@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Event } from "./types";
-import { Account } from "./types";;
+import { Account } from "./types";
 import EventComponent from "./Event";
 import TinyEvent from "./TinyEvent";
 
@@ -14,9 +14,7 @@ interface DiscoverPageProps {
   onClick: Function;
 }
 
-interface DiscoverPageState {
-  
-}
+interface DiscoverPageState {}
 
 class DiscoverPage extends React.Component<
   DiscoverPageProps,
@@ -29,26 +27,24 @@ class DiscoverPage extends React.Component<
 
   onClick = (event: Event) => {
     this.props.onClick(event);
-  }
+  };
 
   render() {
-
-    const items = this.props.events.other.map((value) => (
+    const items = this.props.events.other.map(value => (
       <div className="event-card">
         <EventComponent height={200} onClick={this.onClick} event={value} />
       </div>
     ));
 
-    console.log(this.props.events.hot);;
-    
+    console.log(this.props.events.hot);
 
-    const hotItems = this.props.events.hot.map((value) => (
+    const hotItems = this.props.events.hot.map(value => (
       <div className="event-card">
         <TinyEvent height={200} onClick={this.onClick} event={value} />
       </div>
     ));
 
-    const newItems = this.props.events.new.map((value) => (
+    const newItems = this.props.events.new.map(value => (
       <div className="event-card">
         <TinyEvent height={200} onClick={this.onClick} event={value} />
       </div>
@@ -59,7 +55,7 @@ class DiscoverPage extends React.Component<
         <div id="other-events" className="grid-item">
           <div className="inner-item">
             <div className="events-titles">
-              Отркрий събития
+              Открий събития
               <div className="events-container">
                 {items === null ? <></> : items}
               </div>

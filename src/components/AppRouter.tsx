@@ -92,7 +92,7 @@ class AppRouter extends React.Component<AppRouterProps, AppRouterState> {
             </Link>
             <Link to="/">
               <button className="pure-button pure-button-primary navbar-item">
-                Отркрий събития
+                Открий събития
               </button>
             </Link>
             <Link to="/createEvent">
