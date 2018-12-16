@@ -10,6 +10,9 @@ import DiscoverPage from "./components/DiscoverPage";
 import PersonalCreatedEventsPage from "./components/PersonalCreatedEventsPage";
 import LandingPage from "./components/LandingPage";
 import FriendList from "./components/FriendList";
+import MapContainer from "./components/GoogleMapsTest";
+import MyMap from "./components/GoogleMapsTest";
+import MyMapDraggable from "./components/GoogleMapsDraggable";
 /*
 <div id="app-container">
       <Navbar account={undefined}/>
@@ -17,7 +20,15 @@ import FriendList from "./components/FriendList";
     </div>,
 */
 ReactDOM.render(<App />, document.getElementById("app"));
-
+/*ReactDOM.render(
+  <MyMap
+    onMarkerPlaced={coords => {
+      console.log(coords.lat());
+      console.log(coords.lng());
+    }}
+  />,
+  document.getElementById("app")
+);*/
 /*ReactDOM.render(
   <FriendList
     account={{
@@ -33,3 +44,4 @@ ReactDOM.render(<App />, document.getElementById("app"));
   document.getElementById("app")
 );
 */
+//ReactDOM.render(<MyMapDraggable />, document.getElementById("app"));

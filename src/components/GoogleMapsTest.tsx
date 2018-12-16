@@ -1,80 +1,169 @@
-import { GoogleMap, withGoogleMap, withScriptjs } from "react-google-maps";
-import * as React from "react";
-import { Component } from "react";
-/*
-const someLatLng = { lat: 42.510578, lng: 27.461014 };
-export const googleMapURL =
-  "https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCncT6GETBHhHdRZzZzk_GaZPh5FFPYs0I";
+/*import * as React from "react";
 
-if (root) {
-  const MyGoogleMap = withScriptjs(
-    withGoogleMap(() => (
-      <GoogleMap
-        defaultCenter={someLatLng}
-        defaultZoom={13}
-        options={{ disableDefaultUI: true }}
-      />
-    ))
-  );
-  const loadingElement = <div />;
-  const containerElement = <div style={{ height: "100vh" }} />;
-  const mapElement = <div style={{ height: "20%", width: "20%" }} />;
-  const map = (
-    <MyGoogleMap
-      loadingElement={loadingElement}
-      containerElement={containerElement}
-      googleMapURL={googleMapURL}
-      mapElement={mapElement}
-    />
-  );
+export interface MyMapProps {
+  onMarkerPlaced: string;
+  sugudfsghdf: string;
 }
-*/
-export const googleMapURL =
-  "https://maps.googleapis.com/maps/api/js?v=3.exp&key=AIzaSyCncT6GETBHhHdRZzZzk_GaZPh5FFPYs0I";
 
-const loadingElement = <div />;
-const containerElement = <div style={{ height: "100vh" }} />;
-const mapElement = <div style={{ height: "30%", width: "30%" }} />;
-/*const MyGoogleMap = withScriptjs(
-  withGoogleMap(() => (
-    <GoogleMap
-      defaultCenter={someLatLng}
-      defaultZoom={13}
-      options={{ disableDefaultUI: true }}
-    />
-  ))
-);*/
-export default class MyGoogleMaps extends React.Component<
-  { lat: number; long: number },
-  {}
-> {
-  someLatLng = { lat: 42.510578, lng: 27.461014 };
+export interface MyMapState {}
+
+class MyMap extends React.Component<MyMapProps, MyMapState> {
   componentDidMount() {
-    this.someLatLng = {
-      lat: this.props.lat,
-      lng: this.props.long
-    };
+    if ((window as any).isReadyFunc()) {
+      var myLatLng = { lat: -25.363, lng: 131.044 };
+      this.map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 4,
+        center: myLatLng
+      });
+    } else {
+      setTimeout(this.componentDidMount, 100);
+    }
   }
-  MyGoogleMap = withScriptjs(
-    withGoogleMap(() => (
-      <GoogleMap
-        defaultCenter={this.someLatLng}
-        defaultZoom={13}
-        options={{ disableDefaultUI: true }}
-      />
-    ))
-  );
-  loadingElement = <div />;
-  containerElement = <div style={{ height: "100vh" }} />;
-  mapElement = <div style={{ height: "20%", width: "20%" }} />;
+  map;
+  counter = 0;
+  placeMarker(location, map) {
+    this.marker = new google.maps.Marker({
+      position: location,
+      map: this.map
+    });
+  }
+  marker = undefined;
   render() {
     return (
-      <this.MyGoogleMap
-        loadingElement={loadingElement}
-        containerElement={containerElement}
-        googleMapURL={googleMapURL}
-        mapElement={mapElement}
+      <div
+        id="map"
+        style={{ height: "50%", width: "50%" }}
+        onClick={event => {
+          console.log((event as any).latLng);
+          if (this.counter === 0) {
+            this.placeMarker(event, event.target);
+            this.counter++;
+          } else {
+            this.marker.setPosition((event as any).latLng);
+          }
+        }}
       />
     );
   }
 }
+
+export default MyMap;
+
+/**
+ * 
+ * initMap() {
+    var myLatLng = { lat: -25.363, lng: 131.044 };
+    let counter = 0;
+
+    var map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 4,
+      center: myLatLng
+    });
+
+    var marker;
+    google.maps.event.addListener(map, "click", function(event) {
+      if (counter === 0) {
+        placeMarker(event.latLng);
+        counter++;
+      } else {
+        marker.setPosition(event.latLng);
+      }
+      //this.props.onMarkerPlaced(event.latLng);
+    });
+
+    function placeMarker(location) {
+      marker = new google.maps.Marker({
+        position: location
+      });
+      marker.setMap(map);
+    }
+  }
+ */
+import * as React from "react";
+
+export interface MyMapProps {
+  onMarkerPlaced: Function;
+}
+
+export interface MyMapState {}
+
+class MyMap extends React.Component<MyMapProps, MyMapState> {
+  map = undefined;
+  marker = undefined;
+  counter = 0;
+  initMap = () => {
+    var myLatLng = { lat: 42.510578, lng: 27.461014 };
+
+    this.map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 13.25,
+      center: myLatLng
+    });
+    google.maps.event.addListener(this.map, "click", event => {
+      if (this.counter === 0) {
+        this.placeMarker(event.latLng);
+        this.marker.addListener("drag", event => {
+          this.props.onMarkerPlaced(event.latLng);
+        });
+        this.counter++;
+      } else {
+        this.marker.setPosition(event.latLng);
+      }
+      console.log({ props: this.props });
+      this.props.onMarkerPlaced(event.latLng);
+    });
+  };
+  placeMarker = location => {
+    this.marker = new google.maps.Marker({
+      position: location,
+      map: this.map,
+      draggable: true
+    });
+    console.log((google.maps as any).MarkerOptions);
+  };
+
+  componentDidMount() {
+    console.log(this.initMap);
+    if (this.initMap === undefined) {
+      console.log("didn't pass");
+      this.map = undefined;
+      this.marker = undefined;
+      this.counter = 0;
+      this.placeMarker = location => {
+        this.marker = new google.maps.Marker({
+          position: location,
+          map: this.map
+        });
+      };
+      this.initMap = () => {
+        var myLatLng = { lat: 42.510578, lng: 27.461014 };
+
+        this.map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 2,
+          center: myLatLng
+        });
+        google.maps.event.addListener(this.map, "click", event => {
+          if (this.counter === 0) {
+            this.placeMarker(event.latLng);
+            this.counter++;
+          } else {
+            this.marker.setPosition(event.latLng);
+          }
+          console.log({ props: this.props });
+          //this.props.onMarkerPlaced(event.latLng);
+        });
+      };
+    }
+    if ((window as any).isReadyFunc() && this.initMap !== undefined) {
+      console.log("passed");
+      this.initMap();
+    } else {
+      setTimeout(this.componentDidMount, 100);
+    }
+  }
+
+  render() {
+    return <div id="map" style={{ height: "100%", width: "100%" }} />;
+  }
+}
+
+export default MyMap;

@@ -18,10 +18,10 @@ export type Event = {
     lon: number;
   };
   description: string;
-  paypal: string;
-  phone: number;
+  paypalAddress: string;
   limitPeople: number;
   image: string;
-  tags: string[];
   time: string;
+  phone: string;
+  tags: string[];
 };

@@ -48,23 +48,22 @@ class Register extends React.Component<RegisterProps, RegisterState> {
   handleEmail = e => {
     this.setState({ email: e.target.value });
   };
-  buttonClick = e => {
-    
+  buttonClick = () => {
     let re = /[a-z0-9!#$%&'+/=?^_`{|}~-]+(?:.[a-z0-9!#$%&'+/=?^_`{|}~-]+)@(?:[a-z0-9](?:[a-z0-9-][a-z0-9])?.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
     let { username, password, confirmPassword, email } = this.state;
-    
+
     if (
       password === confirmPassword &&
       username.length <= this.maxLength &&
       re.test(email)
-      ) {
-        console.log(1);
-        this.props.onClick(1, {
-          username: username,
-          password: password,
-          email: email,
-          fullName: this.state.firstName + " " + this.state.password
-        });
+    ) {
+      console.log(1);
+      this.props.onClick(1, {
+        username: username,
+        password: password,
+        email: email,
+        fullName: this.state.firstName + " " + this.state.secondName
+      });
     } else console.log(0);
   };
   render() {
@@ -73,6 +72,11 @@ class Register extends React.Component<RegisterProps, RegisterState> {
         id="register"
         className="col s12 m8 offset-m2 l6 offset-l3"
         style={{ width: "35%" }}
+        onKeyUp={e => {
+          if (e.keyCode === 13) {
+            this.buttonClick();
+          }
+        }}
       >
         <div
           id="RegisterInputField"
@@ -88,6 +92,7 @@ class Register extends React.Component<RegisterProps, RegisterState> {
                   id="first_name"
                   type="text"
                   placeholder="Стоян"
+                  autoFocus
                 />
                 <label className="active" htmlFor="first_name">
                   Име
@@ -124,7 +129,7 @@ class Register extends React.Component<RegisterProps, RegisterState> {
                   onChange={this.handleEmail}
                   id="email"
                   type="text"
-                  placeholder="stoyankolev@ebe.vsichki"
+                  placeholder="slivenski@chakal.jena"
                 />
                 <label className="active" htmlFor="email">
                   E-mail
@@ -162,7 +167,9 @@ class Register extends React.Component<RegisterProps, RegisterState> {
               >
                 Регистрирай се
               </button>
-              <p id="stoqn">Стоян Колев няма нищо общо с този проект.</p>
+              <p style={{ color: "var(--color-1)" }}>
+                <small>Стоян Колев няма нищо общо с този проект.</small>
+              </p>
             </div>
           </div>
         </div>

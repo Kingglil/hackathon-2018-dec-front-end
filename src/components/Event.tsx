@@ -4,6 +4,8 @@ import { Card, CardTitle } from "react-materialize";
 
 import { Event } from "./types";
 
+const imagePlaceholder = require("./res/image_placeholder.png");
+
 interface EventComponentProps {
   event: Event;
 }
@@ -11,33 +13,28 @@ interface EventComponentProps {
 interface EventComponentState {}
 
 class EventComponent extends React.Component<EventComponentProps, EventComponentState> {
-  /*render() {
-    return (
-    <div>
-      <p>{this.props.title}</p>
-      <p>{this.props.description}</p>
-      <img src={this.props.imagesrc}/>
-    </div>
-    );
-  }*/
-  componentDidUpdate() {
-    console.log(this.props);
+
+  static defaultProps = {
+    event: {
+      name: "No name",
+      image: imagePlaceholder,
+      description: "No desc"
+    }
   }
+
   render() {
     return (
-      <div className="row" style={{ maxHeight: "352", maxWidth: "480" }}>
-        <div className="col s12 m7">
-          <div className="card">
-            <div className="card-image">
-              <img height="352" width="480" src={this.props.event} />
-              <span className="card-title" style={{ color: "blue" }}>
-                {this.props.event.name}
-              </span>
-            </div>
-            <div className="card-content" />
-            <div className="card-action">
-              <p>{this.props.description}</p>
-            </div>
+      <div className="row" style={{ maxHeight: "400", maxWidth: "400", padding: "20px" }}>
+        <div className="card">
+          <div className="card-image">
+            <img height="400" width="400" src={this.props.event.image} />
+            <span className="card-title" style={{ color: "blue" }}>
+              {this.props.event.name}
+            </span>
+          </div>
+          <div className="card-content" />
+          <div className="card-action">
+            <p>{this.props.event.description}</p>
           </div>
         </div>
       </div>
