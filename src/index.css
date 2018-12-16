@@ -275,6 +275,7 @@ label.active {
 
 .event-card-p {
   margin: 0;
+  font-size: 18px;
 }
 
 .event-card-image {
@@ -329,4 +330,9 @@ label.active {
 
 .full-width {
   width: 33% !important;
+}
+
+.img-logo {
+  width: 100%;
+  height: auto;
 }
